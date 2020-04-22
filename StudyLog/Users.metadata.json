@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"StudyLog.Users"}],"uuid":"360abb98e76f49e6bdaff201cd4ea9b0"}
