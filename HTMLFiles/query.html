@@ -7,13 +7,21 @@
     <meta name="keywords" content="Study, Log, StudyLog">
     <meta name="description " content="page that get's specified data from the database">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyLog</title>
 </head>
 
 <body>
-    <form action="http://localhost:3000/process_get" method="">
-        <input type="text" name="">
-        <input type="submit" value="Submit">
 
+    <form action="http://localhost:3000/process_get" method="POST">
+        <fieldset>
+            <legend>Find a Session Log</legend>
+            <input type="checkbox" name="sessionName" placeholder="Session Name"><label>Session Name</label>
+            <br><input type="checkbox" name="topicsCovered" placeholder="Topics Covered"><label>Topics Covered</label>
+            <br><input type="checkbox" name="ratedUnderstanding" placeholder="Rated Understanding"><label>Rated Understanding</label>
+            <br><input type="checkbox" name="startTime" placeholder="Start Time"><label>Start Time</label>
+            <br><input type="checkbox" name="endTime" placeholder="End Time"><label>End Time</label>
+            <input type="submit" value="Submit">
+        </fieldset>
     </form>
 </body>
 
