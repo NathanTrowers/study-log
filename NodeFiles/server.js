@@ -45,10 +45,34 @@ server.get("/process_get", function(req, res) {
 })
 
 /*Create Log Page*/
+server.get("/session.html", function(req, res) {
+    console.log("User login request received from homepage.");
+    res.sendfile(__dirname + "/" + "session.html");
+})
 
-/*View Log Pages*/
-//Query Page
-//Results Page
+
+server.post("/process_get2", function(req, res) {
+        mongo.connect(url, { useUnifiedTopology: true }, function(err, db) {
+            if (err) throw err;
+            const sl = db.db("StudyLog");
+            console.log("Connected to StudyLog");
+            sl.collection("Sessions").insert() /***********************************************needs to be completed */
+            var user = sl.collection("Users").findOne({ name: req.query.name }, { projection: { uid: 1, name: 1 } });
+            var userS = JSON.parse(user);
+            uid = userS.uid;
+            db.close();
+        })
+        response = {
+            name: req.query.name
+        };
+        console.log(response);
+        obj = JSON.parse(response);
+        res.send(`Welcome ${obj.name}`);
+        time.waitTime(res.redirect("/session.html"));
+    })
+    /*View Log Pages*/
+    //Query Page
+    //Results Page
 
 /*END*** routing section*/
 
