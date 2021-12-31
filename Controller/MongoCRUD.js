@@ -41,7 +41,9 @@ class MongoCRUD
                 studyLog.collection(collectionName).find(criteria).toArray(function(obj)
                     {
                         console.log("\n%d record(s) successfully retrieved!\n", obj.result.n);
-                        studyLog.close()
+                        studyLog.close();
+
+                        return obj;
                     })
             }
             catch
