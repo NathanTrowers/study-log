@@ -1,0 +1,23 @@
+version: '3'
+services:
+  # study-buddy-api:
+  #   container_name: spirit-library
+  #   build: .
+  #   environment:
+  #     - DATABASE_URL: 'mongoDB:2707'
+  #   restart: always
+  #   links:
+  #     - mongo     
+  #   ports:
+  #     -'80:3000'
+  #   volumes:
+  #     - .:/usr/src/app
+  
+  mongoDB:
+    container_name: mongoDB
+    image: mongo
+    volumes:
+      type:
+      - ./StudyLog: /dbs/study-log
+    ports:
+      - 27017:27017
