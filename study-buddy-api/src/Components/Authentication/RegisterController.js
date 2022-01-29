@@ -1,4 +1,4 @@
-const signUp = (MongoClient, connection, bcrypt) => (req, res) => {
+const register = (MongoClient, connection, bcrypt) => (req, res) => {
     const { email, name, password } = req.body;
 
     if(!email || !name || !password) {
@@ -25,5 +25,5 @@ const signUp = (MongoClient, connection, bcrypt) => (req, res) => {
 };
 
 module.exports = {
-    signUp
+    register
 };

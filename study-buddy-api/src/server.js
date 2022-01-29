@@ -2,11 +2,11 @@
 const express = require("express");
 const cors = require('cors');
 
-const time = require("$/Utility Classes/timer.js");
-const Login = require('$/Components/Authentication/LoginController.js');
-const Register = require('$/Components/Authentication/RegisterController.js');
+const time = require("$/study-buddy-api/src/Utility Classes/timer.js");
+const Login = require('$/study-buddy-api/src/Components/Authentication/LoginController.js');
+const Register = require('$/study-buddy-api/src/Components/Authentication/RegisterController.js');
 const MongoClient = require("mongodb").MongoClient;
-const { DATABASE_URL } = require("$/Constants/GeneralConstant");
+const { DATABASE_URL } = require("$/study-buddy-api/src/Constants/GeneralConstant");
 
 const connection = `mongodb://${DATABASE_URL}`;
 
@@ -16,7 +16,9 @@ server.use(cors());
 
 server.get("/login", Login.login(MongoClient, connection, bcrypt));
 
-server.get("/register", Register.signUp(MongoClient, connection, bcrypt));
+server.get("/register", Register.register(MongoClient, connection, bcrypt));
+
+// server.get("/dashboard", );
 
 server.get("/process_get", function(request, response) {
 
@@ -79,7 +81,7 @@ const activeServer = server.listen(3000, function() {
     const port = server.address().port;
 })
 
-console.log(`The StudyLog server is listening at http://${host}:${port}`);
+console.log(`The spirit library is located at http://${host}:${port}`);
 /*END*** server set-up*/
 
 //Module exports
