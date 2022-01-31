@@ -4,20 +4,19 @@ services:
   #   container_name: spirit-library
   #   build: .
   #   environment:
-  #     - DATABASE_URL: 'mongoDB:2707'
+  #     - DATABASE_URL: 'mongo-db:2707'
   #   restart: always
-  #   links:
-  #     - mongo     
+  #   depends_on:
+  #     - mongo-db     
   #   ports:
-  #     -'80:3000'
+  #     -80:3000
   #   volumes:
-  #     - .:/usr/src/app
+  #     - ./study-budy-api:/usr/src/app
   
-  mongoDB:
-    container_name: mongoDB
-    image: mongo
+  mongo-db:
+    container_name: mongo-db
+    image: mongo:5.0
     volumes:
-      type:
-      - ./StudyLog: /dbs/study-log
+      - ./mongo-db-backup:/backup
     ports:
       - 27017:27017
