@@ -43,7 +43,6 @@ class MongoConnect
             this.status = FAILURE;
             this.response = {
                 status: this.status,
-                error: error
             };
 
             return this.response;
@@ -82,7 +81,6 @@ class MongoConnect
             this.status = FAILURE;
             this.response = {
                 status: this.status,
-                error: error
             };
             
             return this.response;
@@ -220,4 +218,8 @@ class MongoConnect
             this.client.close();
         }
     }
+}
+
+module.exports = {
+    MongoConnect
 }

@@ -1,0 +1,27 @@
+{
+    "Login":{
+        "email": "example@test.com",
+        "password":"example password"
+    },
+    "Logs": {
+        "sid": "S3",
+        "uid": 2,
+        "sessionName": "Animation",
+        "topicsCovered": [
+            "example topic"
+        ],
+        "ratedUnderstanding": "8 of 10",
+        "duration": "20 minutes",
+        "date": "22-04-2020",
+        "startTime": "13:30",
+        "endTime": "13:50"
+    },
+    "Users": {
+        "email": "example@test.com",
+        "name": "Nathan",
+        "dateCreated": "22-04-2-2020 9:35"
+    },
+    "Sessions": {
+        "sessionId": "example ID",
+    }
+}

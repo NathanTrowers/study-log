@@ -1,27 +1,24 @@
-const register = (MongoClient, connection, bcrypt) => (req, res) => {
-    const { email, name, password } = req.body;
+require('$/study-buddy-api/src/Components/Authentication/UserValidator');
+const { UserRepository } = require('$/study-buddy-api/src/Components/Authentication/UserRepository');
 
-    if(!email || !name || !password) {
-        res.send(400).json('incorrect form submission');
+const register = (MongoClient, connection, bcrypt) => (req, res) => {
+    const validator = new UserValidator();
+    let isValidRegistration = validator.decideIfIsValidRegistration(req.body);
+    if(!isValidRegistration) {
+        return res.send(400).json('incorrect form submission');
     }
 
-    const hash = bcrypt.hashSync(password);
+    const userRepository = new UserRepository();
+    let isUserAdded = userRepository.addUser();
 
-    const transactionOptions = {
-        readPreference: 'primary',
-        readConcern: { level: 'local'},
-        writeConcern: { w: 'majority'}
-    };
+    if (isUserAdded) {
+        let response = {
+            "message": "Registration successfull"
+        };
 
-    MongoClient.connect(connection, (err, db) => {
-        if (err) {
-        /**Need to relearn MongoDB with async-await syntax */    
-            console.log( `There was an isue creating a user \n ${err}`);
-        }
+        return res.json(response);
+    }
 
-        let StudyLog = db.db("StudyLog");
-        StudyLog.collection('login"')
-    });
 };
 
 module.exports = {
