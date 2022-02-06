@@ -1,6 +1,6 @@
 const MongoClient = require("mongodb");
-const { DATABASE_URL } = require("$/study-buddy-api/src/Constants/GeneralConstants");
-const { SUCCESS, FAILURE } = require("$/study-buddy-api/src/Constants/StatusConstants");
+const { DATABASE_URL } = require("$/src/Constants/GeneralConstants");
+const { SUCCESS, FAILURE } = require("$/src/Constants/StatusConstants");
 const uri = `mongodb://${DATABASE_URL}`;
 
 class MongoConnect

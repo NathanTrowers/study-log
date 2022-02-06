@@ -1,7 +1,7 @@
-const { MongoConnect } = require('$/study-buddy-api/src/DatabaseConnector/MongoConnect');
-const timer = require('$/study-buddy-api/src/Utility Classes/timer');
+const { MongoConnect } = require('$/src/DatabaseConnector/MongoConnect');
+const timer = require('$/src/Utility Classes/timer');
 const bcrypt = require('bcrypt-nodejs');
-const { SUCCESS } = require('$/study-buddy-api/src//Constants/StatusConstants');
+const { SUCCESS } = require('$/src/Constants/StatusConstants');
 
 class UserRepository
 {

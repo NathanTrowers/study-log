@@ -1,5 +1,8 @@
 {
   "name": "study-buddy-api",
+  "jest": {
+    "setupFilesAfterEnv": ["jest-chain"]
+  },
   "version": "1.0.0",
   "description": "Term Project for the  Web Technologies 3 Course at LCIT",
   "main": "index.js",
@@ -17,7 +20,7 @@
     "Log",
     "StudyLog",
     "Nathan",
-    "Trowers"
+    "Trowers" 
   ],
   "author": "Nathan Trowers",
   "license": "ISC",
@@ -30,11 +33,13 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "jest": "^27.4.5",
+    "express-session": "^1.17.2",
     "mongodb": "^3.5.6"
   },
   "devDependencies": {
     "basetag": "^2.0.1",
+    "jest": "^27.4.5",
+    "jest-chain": "^1.1.5",
     "nodemon": "^2.0.15"
   }
 }

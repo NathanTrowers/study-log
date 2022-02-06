@@ -1,8 +1,7 @@
-require('$/study-buddy-api/src/Entities/User');
+require('$/src/Entities/User');
 
 class UserValidator {
     constructor() {
-
     }
 
     /**
@@ -14,18 +13,18 @@ class UserValidator {
 
         let newUser = !email || !name || !password
             ? null
-            : new User(emai, name, password);
-s
+            : new User(email, name, password);
+
         return newUser;
     }
 
-    async validateUser() {
+    // async validateUser() {
         
-    }
+    // }
 
-    async decideIfIsAuthenticated() {
+    // async decideIfIsAuthenticated() {
 
-    }
+    // }
 
 }
 
