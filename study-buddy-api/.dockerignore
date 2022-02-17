@@ -1,0 +1,7 @@
+#VS Code and Extensions
+.vscode
+.history
+
+#NPM stuff
+node_modules
+npm-debug.log
