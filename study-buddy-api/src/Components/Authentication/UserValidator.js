@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 require('@src/Entities/User');
+=======
+require('$/src/Entities/User');
+>>>>>>> 1a274f6733340c13c66cac3a97272b7b06ad11d4
 
 class UserValidator {
     constructor() {

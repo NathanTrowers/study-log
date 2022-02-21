@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npx basetag link --absolute --hook",
-    "start": "nodemon ./public/index.js",
+    "start": "nodemon index.js",
     "test": "jest __tests__"
   },
   "repository": {
