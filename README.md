@@ -40,5 +40,6 @@ root@mongo-db$ exit
 
 ``` Shell Script
 npm install
-npm run postinstall
 ```
+
+Simple as that!

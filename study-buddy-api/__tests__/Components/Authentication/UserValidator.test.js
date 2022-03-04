@@ -1,10 +1,4 @@
-
-<<<<<<< HEAD
-const { UserValidator } = require('@src/Components/Authentication/UserValidator');
-=======
-const { UserValidator } = require('$/src/Components/Authentication/UserValidator');
->>>>>>> 1a274f6733340c13c66cac3a97272b7b06ad11d4
-
+const { UserValidator } = require('../../../src/Components/Authentication/UserValidator');
    
 describe('tests for the \'decideIfIsValidRegistration\' method', () => {
     /** Data */

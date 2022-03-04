@@ -1,6 +1,6 @@
-const { UserValidator } = require('@src/Components/Authentication/UserValidator');
-const { UserRepository } = require('@src/Components/Authentication/UserRepository');
-const { BAD_REQUEST } = require('@src/Constants/HttpCodeConstants');
+const { UserValidator } = require('./UserValidator');
+const { UserRepository } = require('./UserRepository');
+const { BAD_REQUEST } = require('../Constants/HttpCodeConstants');
 
 const register = () => (req, res) => { 
     const validator = new UserValidator();

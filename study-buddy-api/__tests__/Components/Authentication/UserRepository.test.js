@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-const { UserRepository } = require('@src/Components/Authentication/UserRepository');
-const { MongoConnect } = require('@src/DatabaseConnector/MongoConnect');
-const { SUCCESS, FAILURE } = require('@src/Constants/StatusConstants');
-require('@/src/Entities/User');
-=======
-const { UserRepository } = require('$/src/Components/Authentication/UserRepository');
-const { MongoConnect } = require('$/src/DatabaseConnector/MongoConnect');
+const { UserRepository } = require('../../../src/Components/Authentication/UserRepository');
+const { MongoConnect } = require('../../../src/DatabaseConnector/MongoConnect');
 const { SUCCESS, FAILURE } = require('../../../src/Constants/StatusConstants');
-require('$/src/Entities/User');
->>>>>>> 1a274f6733340c13c66cac3a97272b7b06ad11d4
+require('../../../src/Entities/User');
 
 
 describe.each(newUser)('test the \'addUser\' method', () => {

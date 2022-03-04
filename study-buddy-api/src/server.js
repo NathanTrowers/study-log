@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require('cors');
 
-// const Login = require('@src/Components/Authentication/LoginController.js');
+// const Login = require('./Components/Authentication/LoginController.js');
 const Register = require('./Components/Authentication/RegisterController.js');
 
 const server = express();

@@ -3,5 +3,5 @@
 .history
 
 # node modules for each sub-repo
-./study-buddy-api/node_modules
+study-buddy-api/node_modules
 

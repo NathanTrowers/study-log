@@ -1,7 +1,7 @@
-const { MongoConnect } = require('@src/DatabaseConnector/MongoConnect');
-const timer = require('@src/Utility Classes/timer');
+const { MongoConnect } = require('../../DatabaseConnector/MongoConnect');
+const timer = require('../../Utility Classes/timer');
 const bcrypt = require('bcryptjs');
-const { SUCCESS } = require('@src/Constants/StatusConstants');
+const { SUCCESS } = require('../../Constants/StatusConstants');
 
 class UserRepository
 {

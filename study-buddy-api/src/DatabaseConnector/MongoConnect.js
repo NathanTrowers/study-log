@@ -1,6 +1,6 @@
 const MongoClient = require("mongodb");
-const { DATABASE_URL } = require("$/src/Constants/GeneralConstants");
-const { SUCCESS, FAILURE } = require("$/src/Constants/StatusConstants");
+const { DATABASE_URL } = require("../Constants/GeneralConstants");
+const { SUCCESS, FAILURE } = require("../Constants/StatusConstants");
 const uri = `mongodb://${DATABASE_URL}`;
 
 class MongoConnect
@@ -10,7 +10,7 @@ class MongoConnect
         this.status = SUCCESS;
         this.response = {};
 
-        await this.client.connect();
+        this.client.connect();
         this.db = this.client.db('StudyLog');
     }
 
