@@ -2,13 +2,13 @@
 
 On this page:
 
-1. [mongo-db-backup](#mongo-db-backup)
-2. [study-buddy-api](#study-buddy-api)
+1. [mongo-db-backup](#for-mongo-db-backup)
+2. [study-buddy-api](#for-study-buddy-api)
 3. (WIP for FE isntructions)
 
 After doing a `git pull` of the repo :
 
-## For **mongo-db-backup** {#mongo-db-backup}
+## For **mongo-db-backup**
 
 - run
 
@@ -34,7 +34,7 @@ You may now exit the mongo shell and the docker container it is in with the foll
 root@mongo-db$ exit
 ```
 
-## For **study-buddy-api** {#study-buddy-api}
+## For **study-buddy-api**
 
 - If you want to run ***study-buddy-api*** outside of the dockker container, navigate to the folder from the command line and run:
 
