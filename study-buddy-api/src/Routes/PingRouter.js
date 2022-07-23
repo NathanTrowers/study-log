@@ -1,7 +1,7 @@
 import { Router } from 'express';
-
+import pingController from '../Controllers/PingController.js'
 const pingRouter = Router();
 
-pingRouter.get('/', console.log('Yu jus ping mi, is waa\'m?'));
+pingRouter.get('/', pingController);
 
 export default pingRouter;

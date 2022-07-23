@@ -5,15 +5,12 @@ export const PROCESSING = '102';
 export const EARLY_HINTS = '103';
 
 /**Successful Responses */
-export const OK = '200';
-export const CREATED = '201';
-export const ACCEPTED = '202';
-export const NON_AUTHORITATIVE_INFORMATION = '203';
-export const NO_CONTENT = '204';
-export const RESET_CONTENT = '205';
-export const PARTIAL_CONTENT = '206';
-export const MULTI_STATUS = '207';
-export const ALREADY_REPORTED = '208';
+export const SUCCESS = {
+    OK: '200',
+    CREATED: '201',
+    ACCEPTED: '202'
+}
+
 
 /**Redirection Responses */
 export const MULTIPLE_CHOICE = '300';
