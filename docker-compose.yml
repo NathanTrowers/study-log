@@ -17,6 +17,7 @@ services:
       - PORT=3000
     deploy:
       restart_policy:
+        condition: on-failure
         delay: 3s
     depends_on:
       - mongo-db
@@ -27,21 +28,19 @@ services:
     volumes:
       - ./study-buddy-api:/usr/src/app
 
-  # tunnel-vision:
-  #   container_name: tunnel-vision
-  #   build: ./tunnel-vision
-  #   environment:
-  #     - API_URL='study-buddy-api:3000/'
-  #   deploy:
-  #     restart_policy:
-  #       condition: on-failure
-  #       delay: 5s
-  #       window: 120s
-  #   depends_on:
-  #     - mongo-db
-  #   links:
-  #     - tunnel-vision
-  #   ports:
-  #     - 3001:3001
-  #   volumes:
-  #     - ./tunnel-vision:/usr/src/app
+  tunnel-vision:
+    container_name: tunnel-vision
+    build: ./tunnel-vision
+    environment:
+      - API_URL='study-buddy-api:3000/'
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s
+    links:
+      - study-buddy-api
+    ports:
+      - 3001:3000
+    volumes:
+      - ./tunnel-vision:/usr/src/app

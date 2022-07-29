@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import pingRouter from './Routes/PingRouter.js';
+import healthCheckRouter from './Routes/HealthCheckRouter.js';
 
 const app = express();
 app.use(cors());
@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 //Routes
-app.use('/ping', pingRouter);
+app.use('/health', healthCheckRouter);
 
 // Network Connection
 const host = process.env.ADDRESS;
