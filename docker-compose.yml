@@ -1,21 +1,5 @@
 version: '3'
-services:
-  study-buddy-api:
-    container_name: spirit-library
-    build: ./study-buddy-api
-    environment:
-      - DATABASE_URL:'mongo-db:2707'
-    restart_policy:
-      condition: on-failure
-      delay: 5s
-      window: 120s
-    depends_on:
-      - mongo-db
-    ports:
-      - 80:3000
-    volumes:
-      - ./study-buddy-api:/usr/src/app
-  
+services:  
   mongo-db:
     container_name: mongo-db
     image: mongo:5.0
@@ -23,3 +7,40 @@ services:
       - ./mongo-db-backup:/backup
     ports:
       - 27017:27017
+
+  study-buddy-api:
+    container_name: spirit-library
+    build: ./study-buddy-api
+    environment:
+      - DATABASE_URL='mongodb://mongo-db:27017/'
+      - ADDRESS=localhost
+      - PORT=3000
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 3s
+    depends_on:
+      - mongo-db
+    links:
+      - mongo-db
+    ports:
+      - 3000:3000
+    volumes:
+      - ./study-buddy-api:/usr/src/app
+
+  tunnel-vision:
+    container_name: tunnel-vision
+    build: ./tunnel-vision
+    environment:
+      - API_URL='study-buddy-api:3000/'
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 120s
+    links:
+      - study-buddy-api
+    ports:
+      - 3001:3000
+    volumes:
+      - ./tunnel-vision:/usr/src/app
