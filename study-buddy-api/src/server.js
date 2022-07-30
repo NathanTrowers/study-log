@@ -1,26 +1,21 @@
-const express = require("express");
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
+import healthCheckRouter from './Routes/HealthCheckRouter.js';
 
-// const Login = require('./Components/Authentication/LoginController.js');
-const Register = require('./Components/Authentication/RegisterController.js');
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-const server = express();
-server.use(cors());
-server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
 
-// server.get("/login", Login.login(MongoClient, connection, bcrypt));
+//Routes
+app.use('/health', healthCheckRouter);
 
-server.get("/register", Register.register());
-
-// server.get("/dashboard", );
-
-const host = server.address().address;
-const port = server.address().port;
-const activeServer = server.listen(3000);
+// Network Connection
+const host = process.env.ADDRESS;
+const port = process.env.PORT;
+app.listen(port);
 
 console.log(`The spirit library is located at http://${host}:${port}`);
 
-module.exports = {
-    activeServer
-};
+export default app;
