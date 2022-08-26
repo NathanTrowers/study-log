@@ -1,7 +1,8 @@
 {
     "Login":{
         "email": "example@test.com",
-        "password":"example password"
+        "password":"example password",
+        "sessionId": "example ID"
     },
     "Logs": {
         "sid": "S3",

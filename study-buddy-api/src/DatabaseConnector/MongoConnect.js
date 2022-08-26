@@ -1,12 +1,10 @@
 const MongoClient = require("mongodb");
 const { DATABASE_URL } = require("../Constants/GeneralConstants");
 const { SUCCESS, FAILURE } = require("../Constants/StatusConstants");
-const uri = `mongodb://${DATABASE_URL}`;
-
 class MongoConnect
 {
     constructor() {
-        this.client = MongoClient(uri);
+        this.client = MongoClient(DATABASE_URL);
         this.status = SUCCESS;
         this.response = {};
 
