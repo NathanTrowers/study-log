@@ -1,15 +1,15 @@
 # syntax=docker/dockerfile:1
-FROM node:14.18
+FROM node:16
 
 WORKDIR /usr/src/app
 
 COPY package.json ./
 
+RUN npm install npm@8.18.0 -g
 RUN npm install
-RUN npm run build
 
 COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "dev"]
+CMD npm run dev
