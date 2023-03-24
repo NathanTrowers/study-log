@@ -15,7 +15,7 @@ After doing a `git pull` of the repo :
 ``` Shell Script
 $# docker-compose up mongo-db
 $# docker exec -it mongo-db bash
-root@mongo-db$ mongorestore /backup
+root@mongo-db$ mongorestore -u Admin -p AdM1n /backup
 ```
 
 Check that the collections have been updated with:
@@ -31,6 +31,12 @@ You may now exit the mongo shell and the docker container it is in with the foll
 
 ``` Shell Script
 > exit
+root@mongo-db$ exit
+```
+
+To back up the data do the following from within the mongodb container:
+``` Shell Script
+root@mongo-db$ mongodump -u Admin -p AdM1n --out=/backup/
 root@mongo-db$ exit
 ```
 
