@@ -1,9 +1,12 @@
 {
     "Login":{
         "email": "example@test.com",
-        "password":"example password"
+        "name": "Highly Blessed",
+        "password":"example password",
+        "dateCreated": "22-04-2-2020 9:35",
+        "sessionId": "example ID"
     },
-    "Logs": {
+    "Log": {
         "sid": "S3",
         "uid": 2,
         "sessionName": "Animation",
@@ -15,13 +18,5 @@
         "date": "22-04-2020",
         "startTime": "13:30",
         "endTime": "13:50"
-    },
-    "Users": {
-        "email": "example@test.com",
-        "name": "Nathan",
-        "dateCreated": "22-04-2-2020 9:35"
-    },
-    "Sessions": {
-        "sessionId": "example ID",
     }
 }
