@@ -16,13 +16,9 @@ describe('Suite of tests for the Login Validator', () => {
     ])('returns a user object when the right credentials are given', async ({ rightEmailFormat }) => {
         /** Data */
         let expectedResult = {
-            user: {
-                _id:            '63f3c7392deb6400c51b2b18',
-                password:       '$2a$10$KviWp.9Ayd5CXn2WhRbmZO0b7lmpy4Gp95v3T/bOMtOdqDfnpbdNe',
-                email:          rightEmailFormat,
-                dateCreated:    '22-04-2-2020 9:34',
-                userName:       'Studying Addict2'
-            }
+            email:          rightEmailFormat,
+            dateCreated:    '22-04-2-2020 9:34',
+            userName:       'Studying Addict2'
         };
 
         let req = {
@@ -42,13 +38,11 @@ describe('Suite of tests for the Login Validator', () => {
                 {
                     status: operationOutcome.SUCCESS,
                     response:{
-                        user: {
-                            _id:            '63f3c7392deb6400c51b2b18',
-                            password:       '$2a$10$KviWp.9Ayd5CXn2WhRbmZO0b7lmpy4Gp95v3T/bOMtOdqDfnpbdNe',
-                            email:          rightEmailFormat,
-                            dateCreated:    '22-04-2-2020 9:34',
-                            userName:       'Studying Addict2'
-                        } 
+                        _id:            '63f3c7392deb6400c51b2b18',
+                        password:       '$2a$10$KviWp.9Ayd5CXn2WhRbmZO0b7lmpy4Gp95v3T/bOMtOdqDfnpbdNe',
+                        email:          rightEmailFormat,
+                        dateCreated:    '22-04-2-2020 9:34',
+                        userName:       'Studying Addict2'
                     }
                 }
             ));
@@ -111,13 +105,11 @@ describe('Suite of tests for the Login Validator', () => {
                 {
                     status: operationOutcome.SUCCESS,
                     response:{
-                        user: {
-                            _id:            '63f3c7392deb6400c51b2b18',
-                            password:       '$2a$10$KviWp.9Ayd5CXn2WhRbmZO0b7lmpy4Gp95v3T/bOMtOdqDfnpbdNe',
-                            email:          'test@test.com',
-                            dateCreated:    '22-04-2-2020 9:34',
-                            userName:       'Studying Addict2'
-                        } 
+                        _id:            '63f3c7392deb6400c51b2b18',
+                        password:       '$2a$10$KviWp.9Ayd5CXn2WhRbmZO0b7lmpy4Gp95v3T/bOMtOdqDfnpbdNe',
+                        email:          'test@test.com',
+                        dateCreated:    '22-04-2-2020 9:34',
+                        userName:       'Studying Addict2'
                     }
                 }
             ));

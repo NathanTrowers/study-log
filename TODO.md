@@ -6,7 +6,6 @@ As a logged-out user, I want to see a welcome page with a form to enter my login
  + The welcome page will consist of a welcome message and a web form.
  + When the user logs-in with the correct credentials, they are re-directed to the home page.
  If the user enters the wrong credentials, they are shown an error message and are told to try again.
-
 ## TECHNICAL SOLUTION
 ### Back-end
 + Credential validation done using database values.
@@ -19,7 +18,6 @@ As a logged-out user, I want to see a welcome page with a form to enter my login
 
 ### Testing
 + BE (Jest) unit tests for validation logic
-+ BE (Jest) integration tests for database connectivity
 + Postman API automated tests for the BE's endpoints (**Spike Required**)
 - FE (Jest) unit tests for input validation.
 + FE (Cypress) e-to-e testing for the feature (**Spike Required**)
@@ -28,3 +26,5 @@ As a logged-out user, I want to see a welcome page with a form to enter my login
 + Docker container setup for DB, API and React app
 + BE set-up to use Express JS
 + FE set-up to receive API calls from the BE
+
+create a bonus ticket for encoding the login data on both ends.

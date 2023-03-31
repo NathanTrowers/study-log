@@ -1,4 +1,4 @@
-import OPERATION_OUTCOME from "../Constants/OperationOutcomeConstants.js";
+import operationOutcome from '../Constants/OperationOutcomeConstants.js';
 
 class CrudUtils {
     constructor(client){
@@ -14,14 +14,14 @@ class CrudUtils {
         this.response = await db('Login').updateOne(query);
 
         return {
-          status: OPERATION_OUTCOME.SUCCESS,
+          status: operationOutcome.SUCCESS,
           response: this.response
         }
       } catch (MongoNetworkError) {
         console.error('Something went wrong while creating the session');
 
         return {
-          status: OPERATION_OUTCOME.FAILURE,
+          status: operationOutcome.FAILURE,
           response: MongoNetworkError
         }
       } finally {
