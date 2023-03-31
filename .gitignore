@@ -6,12 +6,18 @@
 study-buddy-api/node_modules
 tunnel-vision/node_modules
 
+
+#env file
+tunnel-vision/.env
+
 # dependencies
 tunnel-vision/.pnp
 .pnp.js
 
 # testing
 tunnel-vision/coverage
+tunnel-vision/cypress/videos
+tunnel-vision/cypress/downloads
 
 # production
 tunnel-vision/build

@@ -26,7 +26,11 @@ const validateLogin = async (req) => {
     req.session.user = user;
     req.session.authorized = true;
 
-    return user;
+    return {
+        dateCreated:    user.dateCreated,
+        email:          user.email,
+        userName:       user.userName
+    };
 }
 
 export default validateLogin;
