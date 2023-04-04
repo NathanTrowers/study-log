@@ -5,7 +5,10 @@ export const isLoggedIn = (req, res, next) => {
     req.session.authorized 
         ? res.redirect('/dummy')
         : res.status(success.OK)
-            .json({ message: 'Hi there scholar, let\'s see those credentials!'});
+            .json({ 
+                message: 'Hi there scholar, let\'s see those credentials!', 
+                isLoggedIn: false
+            });
 }
 
 export const login = async (req, res, next) => {
@@ -28,4 +31,9 @@ export const login = async (req, res, next) => {
     }
 
     next();
-};
+}
+
+export const logout = (req, res) => {
+    req.session.destroy();
+    res.redirect('login');
+}

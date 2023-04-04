@@ -16,7 +16,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session({
     resave:             false,
     saveUninitialized:  false,
-    secret:             uuidv4()
+    secret:             uuidv4(),
+    cookie: {
+        maxAge: 60000 * 60 * 60 * 24 //60 days 60 mins 60 sec 24 hrs
+    }
 }));
 
 //Routes

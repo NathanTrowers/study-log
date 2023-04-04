@@ -2,13 +2,6 @@ import { Route, Routes } from  'react-router-dom';
 import Welcome from '../Welcome';
 import Login from '../Login';
 
-/**
- * 
- * error handling in routes
- * loading animation file
- * unit tests
- * cypress tests
- */
 const AppRoutes = () => {
     return(
         <Routes>
