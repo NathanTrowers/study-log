@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const post = async (endpoint, data) => {
+export const post = async (endpoint, data = {}) => {
    try { 
         const response = await axios({
             method: 'POST',

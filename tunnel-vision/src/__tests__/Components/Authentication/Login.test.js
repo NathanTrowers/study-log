@@ -2,15 +2,15 @@ import { Provider, useDispatch , useSelector } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Login from '../../Components/Login';
-import * as UserSlice from '../../Components/User/UserSlice';
-import store from '../../Store/Store';
-import * as Request from '../../Utils/Request';
-import * as Message from '../../Utils/Message';
-import * as LoginValidator from '../../Validators/LoginValidator';
+import Login from '../../../Components/Authentication/Login';
+import * as UserSlice from '../../../Components/User/UserSlice';
+import store from '../../../Store/Store';
+import * as Request from '../../../Utils/Request';
+import * as Message from '../../../Utils/Message';
+import * as LoginValidator from '../../../Validators/LoginValidator';
 
 describe('Test suite for Login Component', () => {
-    xit('renders without crashing', () => {
+    it('renders without crashing', () => {
         render(
             <BrowserRouter>
                 <Provider store={store}>

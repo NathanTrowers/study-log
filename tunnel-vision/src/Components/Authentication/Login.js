@@ -1,15 +1,17 @@
 import { useState } from 'react';
-import { useDispatch , useSelector} from 'react-redux'
-import { selectUser, setUser } from './User/UserSlice';
-import { validateLogin } from '../Validators/LoginValidator';
-import { post } from '../Utils/Request';
-import { setFailMessage, setSuccessMessage } from '../Utils/Message';
-import './_styles/Form.css';
+import { useDispatch , useSelector} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { selectUser, setUser } from '../User/UserSlice';
+import { validateLogin } from '../../Validators/LoginValidator';
+import { post } from '../../Utils/Request';
+import { setFailMessage, setSuccessMessage } from '../../Utils/Message';
+import '../_styles/Form.css';
 
 const Login = () => {
     const [ formData, setFormData ] = useState({});
     const [ message, setMessage ] = useState({});
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     useSelector(selectUser);  // the success message only shows when this is present.
 
     const handleChange = ({ target }) => {
@@ -26,7 +28,8 @@ const Login = () => {
                 });
 
                 storeUserInfo(response);
-                return;
+                setTimeout(() => navigate('/home'), 3000);
+                return ;
             } catch (error) {
                 setMessage(setFailMessage('error'));
                 return;
