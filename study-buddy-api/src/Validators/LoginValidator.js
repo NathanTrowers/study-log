@@ -12,7 +12,7 @@ const validateLogin = async (req) => {
         return null;
     }
 
-    const query = await findUser({ email: email });
+    const query = await findUser(email);
     if(query.status === operationOutcome.FAILURE) {
         return null;
     }

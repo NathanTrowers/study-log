@@ -5,7 +5,7 @@ import validateLogin from '../../src/Validators/LoginValidator';
 import operationOutcome from '../../src/Constants/OperationOutcomeConstants.js';
 import * as MongoConnect from '../../src/DatabaseConnector/MongoConnect.js';
 
-describe('Suite of tests for the Login Validator', () => {
+describe('Test Suite for the Login Validator', () => {
 
     it.each([
         {rightEmailFormat: 'test9@test.com'},
