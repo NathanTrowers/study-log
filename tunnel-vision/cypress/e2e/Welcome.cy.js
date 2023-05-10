@@ -11,4 +11,9 @@ describe('Welcome Page', () => {
     cy.contains('Login').click();
     cy.url().should('include', '/login')  ;
   });
+
+  it('clicks on "Sign-up" button to visit Sign-up page', () => {
+    cy.contains('Sign-up').click();
+    cy.url().should('include', '/sign-up')  ;
+  });
 });

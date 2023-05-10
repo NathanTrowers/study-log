@@ -1,0 +1,13 @@
+#welcomeContainer {
+    display: flex;
+    flex-flow: row wrap;
+    min-width: 40vw;
+    justify-content: center;
+    align-items: stretch;
+}
+
+#welcomeContainer > .button{
+    margin: 10px;
+    max-width: 80%;
+    flex: 1 1 200px;
+}

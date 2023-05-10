@@ -7,8 +7,25 @@
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 80%;
+    gap: 10px;
     justify-content: center;
+    min-width: 70vw;
+}
+
+.form > * {
+    padding: 10px;
+}
+
+.signUpForm {
+    display: grid;
+    grid-template-columns: 80% auto;
+    gap: 10px;
+    justify-content: center;
+    min-width: 70vw;
+}
+
+.signUpForm > * {
+    padding: 10px;
 }

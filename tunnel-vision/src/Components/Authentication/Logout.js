@@ -10,7 +10,6 @@ const Logout = () => {
 
     const getBackEndResponse = async () => {
         let response = await post('/auth/logout');
-        console.log(response);
          response.data?.isLoggedIn === false
             ? setMessage('You are officially out!')
             : setMessage('I messed up, we\'ll need to try again!');

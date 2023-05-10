@@ -31,7 +31,7 @@ describe('Login Page', () => {
         cy.getByData('password-input').type('wrangB@ng');
         cy.contains('Login').click();
 
-        cy.getByData('message').should('exist').contains('Either your username or password is incorrect. Try again.');
+        cy.getByData('message').should('exist').contains('Looks like something you entered is wrong. Try again.');
     });
 
     it('blocks failed login when the wrong username is entered', () => {
@@ -39,6 +39,6 @@ describe('Login Page', () => {
         cy.getByData('password-input').type('bookworm');
         cy.contains('Login').click();
 
-        cy.getByData('message').should('exist').contains('Either your username or password is incorrect. Try again.');
+        cy.getByData('message').should('exist').contains('Looks like something you entered is wrong. Try again.');
     });
 });
