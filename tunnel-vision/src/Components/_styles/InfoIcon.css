@@ -1,0 +1,25 @@
+.infoIcon {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #00FFFF;
+    font-size: 20px;
+}
+
+.infoIcon .infoBubble {
+    visibility: hidden;
+    min-width: 200px;
+    background-color: #FFF;
+    color: #000;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-size: 12px;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 103%
+}
+
+.infoIcon:hover .infoBubble {
+    visibility: visible;
+}

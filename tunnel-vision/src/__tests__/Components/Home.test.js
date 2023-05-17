@@ -9,16 +9,8 @@ describe('Test suite for Home Component', () => {
                 <Home />
             </BrowserRouter>
         );
-    });
 
-    it('renders without crashing', () => {
-        render(
-            <BrowserRouter>
-                <Home />
-            </BrowserRouter>
-        );
-
-        expect(screen.getByRole('heading')).toHaveTextContent('Welcome Home!'); //TODO: Finish this with the right role;s
+        expect(screen.getByRole('heading')).toHaveTextContent('Welcome Home!');
         expect(screen.getByRole('button')).toHaveTextContent('Logout');
     });
 });

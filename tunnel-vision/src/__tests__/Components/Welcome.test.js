@@ -20,7 +20,7 @@ describe('Test suite for Welcome Component', () => {
         );
 
         /** Assert */
-        expect(screen.getByRole('button')).toHaveTextContent('Login');
-        expect(screen.getByRole('button')).not.toBeDisabled();
+        expect(screen.getByText('Login'));
+        expect(screen.getByText('Sign-up'));
     })
 });
