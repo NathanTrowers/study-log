@@ -1,5 +1,8 @@
+'use strict';
+
 import { Router } from 'express';
-import healthCheckController from '../Controllers/HealthCheckController.js'
+import healthCheckController from '../Controllers/HealthCheckController.js';
+
 const healthCheckRouter = Router();
 
 healthCheckRouter.get('/', healthCheckController);

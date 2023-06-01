@@ -1,10 +1,15 @@
-# Requirement 7
+# Requirement 3
+
 ## USER STORY
-As a logged-out user, I want to create a new user then be redirected to the login page.
+
+As a logged-in user, I want to view my recorded study sessions (date,start and end times, duration, session name, session details, rated understandig).
 
 ## ACCEPTANCE CRITERIA
- + clicking the "sign-up" button shows a sign-up form.  Successful submission redirects to the Login page.
- + The user is able to login with these new credentials.
- + Unsuccessful sign-up throws error
 
-create a bonus ticket for encoding the login data on both ends.
++ Clicking the "View Sesions" tab reroutes to the '/sessions' endpoint. The sessions should be visible there.
+
++ The sessions can be filtered by typing the subject in the search bar.
+
++ An error message is shown when the sessions cannot be shown.
+
+create a bonus tickets for encoding the login data on both ends.

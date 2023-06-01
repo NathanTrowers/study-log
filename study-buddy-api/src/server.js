@@ -6,6 +6,7 @@ import session from 'express-session';
 import { v4 as uuidv4 } from 'uuid';
 import authenticationRouter from './Routes/AuthenticationRouter.js';
 import healthCheckRouter from './Routes/HealthCheckRouter.js';
+import logRouter from './Routes/LogRouter.js';
 
 const app = express();
 app.use(cors({
@@ -25,6 +26,7 @@ app.use(session({
 //Routes
 app.use('/health', healthCheckRouter);
 app.use('/auth', authenticationRouter);
+app.use(logRouter);
 
 app.get('/dummy', (req, res, next) => {
     res.json({message: "You are Logged In!"});

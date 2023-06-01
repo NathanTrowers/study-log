@@ -1,14 +1,27 @@
 'use strict';
 
 import { success, clientError } from '../Constants/HttpCodeConstants.js';
+import operationOutcome from '../Constants/OperationOutcomeConstants.js';
 import validateLogin  from '../Validators/LoginValidator.js';
 import validateRegistration  from '../Validators/RegistrationValidator.js';
-import operationOutcome from '../Constants/OperationOutcomeConstants.js';
 
 
 export const isLoggedIn = (req, res, next) => {
-    req.session.authorized 
-        ? res.redirect('/dummy')
+    req.session.authorized
+        ? next()
+        : res.status(success.OK)
+            .json({ 
+                message: 'Hi there scholar, let\'s see those credentials!', 
+                isLoggedIn: false
+            });
+}
+
+export const shouldLogIn = (req, res) => {
+    req.session.authorized
+        ? res.status(success.OK)
+            .json({ 
+                isLoggedIn: true
+            })
         : res.status(success.OK)
             .json({ 
                 message: 'Hi there scholar, let\'s see those credentials!', 
