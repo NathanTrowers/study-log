@@ -4,18 +4,16 @@
         "name": "Highly Blessed",
         "password":"example password",
         "dateCreated": "22-04-2-2020 9:35",
-        "sessionId": "example ID"
+        "_id": "example UUID"
     },
     "Log": {
-        "sid": "S3",
-        "uid": 2,
-        "sessionName": "Animation",
-        "topicsCovered": [
-            "example topic"
-        ],
+        "_id": "66980f91-e73d-47b3-c400-f10423a9c8bc",
+        "userId": "63f3c739-2deb-6400-c51b-2b183a9cf104",
+        "subject": "MERN Stack Web Dev",
+        "details": "setup for API testing complete",
         "ratedUnderstanding": "8 of 10",
-        "duration": "20 minutes",
-        "date": "22-04-2020",
+        "duration": "20 min",
+        "date": "2023-04-19T13:55:49.549Z",
         "startTime": "13:30",
         "endTime": "13:50"
     }

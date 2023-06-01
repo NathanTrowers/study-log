@@ -29,6 +29,7 @@ const validateLogin = async (req) => {
     return {
         dateCreated:    user.dateCreated,
         email:          user.email,
+        id:             user._id,
         userName:       user.userName
     };
 }

@@ -7,35 +7,6 @@ import operationOutcome from "../Constants/OperationOutcomeConstants.js";
 
 const { MongoClient } = mongo; 
 
-export async function findUser(email) {
-    const client = new MongoClient(DATABASE_URL, { useUnifiedTopology: true });
-
-    try {
-        await client.connect();
-        console.log("Connected to database");
-
-        const response = await client.db('StudyLog')
-            .collection('Login')
-            .findOne({ email: email });
-        console.log("Operation successfull");
-
-        return {
-            status:   operationOutcome.SUCCESS,
-            response: response
-        };
-      } catch(MongoNetworkError) {
-        console.error('Something went wrong while finding the user.', MongoNetworkError)
-
-        return {
-          status:   operationOutcome.FAILURE,
-          response: MongoNetworkError
-        };
-      } finally {
-        client.close();
-        console.log("Database connection closed");
-      }
-}
-
 export const createUser = async (email, hashedPassword, userName) => {
   const client = new MongoClient(DATABASE_URL, { useUnifiedTopology: true });
 
@@ -58,8 +29,67 @@ export const createUser = async (email, hashedPassword, userName) => {
           status:   operationOutcome.SUCCESS,
           response: response
       };
-    } catch(MongoNetworkError) {
+    } catch (MongoNetworkError) {
       console.error('Something went wrong while finding the user.', MongoNetworkError)
+
+      return {
+        status:   operationOutcome.FAILURE,
+        response: MongoNetworkError
+      };
+    } finally {
+      client.close();
+      console.log("Database connection closed");
+    }
+}
+
+export const findUser = async email => {
+    const client = new MongoClient(DATABASE_URL, { useUnifiedTopology: true });
+
+    try {
+        await client.connect();
+        console.log("Connected to database");
+
+        const response = await client.db('StudyLog')
+            .collection('Login')
+            .findOne({ email: email });
+        console.log("Operation successfull");
+
+        return {
+            status:   operationOutcome.SUCCESS,
+            response: response
+        };
+      } catch (MongoNetworkError) {
+        console.error('Something went wrong while finding the user.', MongoNetworkError)
+
+        return {
+          status:   operationOutcome.FAILURE,
+          response: MongoNetworkError
+        };
+      } finally {
+        client.close();
+        console.log("Database connection closed");
+      }
+}
+
+export const findLogs = async id => {
+  const client = new MongoClient(DATABASE_URL, { useUnifiedTopology: true });
+
+  try {
+      await client.connect();
+      console.log("Connected to database");
+      
+      const response = await client.db('StudyLog')
+        .collection('Log')
+        .find({ userId: id })
+        .toArray();
+      console.log("Operation successfull");
+
+      return {
+          status:   operationOutcome.SUCCESS,
+          response: response
+      };
+    } catch (MongoNetworkError) {
+      console.error('Something went wrong while finding the logs.', MongoNetworkError)
 
       return {
         status:   operationOutcome.FAILURE,
