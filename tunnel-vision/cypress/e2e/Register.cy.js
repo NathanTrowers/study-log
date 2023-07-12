@@ -1,9 +1,9 @@
 describe('Sign-up Page', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:3001/sign-up');
+        cy.visit('/sign-up');
     });
 
-    //NOTE: Delete the user from the database after each test.
+    //NOTE: Manually DELETE the user from the database after each test.
     it('allows successful registration',() => {
         cy.getByData('email-input').type('s.addict3@test.com');
         cy.getByData('password-input').type('bookworm');

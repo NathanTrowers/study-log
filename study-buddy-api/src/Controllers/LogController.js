@@ -5,7 +5,7 @@ import operationOutcome from '../Constants/OperationOutcomeConstants.js';
 import { findLogs } from '../DatabaseConnector/MongoConnect.js';
 
 
-export const getAllSessions = async (req, res, next) => {
+export const getAllLogs = async (req, res, next) => {
     try {
         const logs = await findLogs(req.query.id);
         if (logs.status === operationOutcome.FAILURE) {

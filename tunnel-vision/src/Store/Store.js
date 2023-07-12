@@ -1,8 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from '../Components/User/UserSlice';
+import userReducer from '../Components/Slice/UserSlice';
+import logsReducer from '../Components/Slice/LogsSlice';
+import searchQueryReducer from '../Components/Slice/SearchQuerySlice';
 
-export default configureStore({
+const store = configureStore({
     reducer: {
-        user: userReducer
+        user:           userReducer,
+        logs:           logsReducer,
+        searchQuery:    searchQueryReducer
     }
 });
+
+export default store;

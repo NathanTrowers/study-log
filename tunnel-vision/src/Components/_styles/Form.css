@@ -29,3 +29,11 @@
 .signUpForm > * {
     padding: 10px;
 }
+
+.link {
+    color: #00FFFF;
+}
+
+.link:hover {
+    font-weight: bold;
+}

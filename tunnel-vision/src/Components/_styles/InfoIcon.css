@@ -1,23 +1,21 @@
 .infoIcon {
-    position: relative;
     display: inline-block;
-    border-bottom: 1px dotted #00FFFF;
+    position: relative;
     font-size: 20px;
 }
 
-.infoIcon .infoBubble {
+.infoBubble {
     visibility: hidden;
-    min-width: 200px;
-    background-color: #FFF;
-    color: #000;
-    text-align: center;
-    padding: 5px 0;
     border-radius: 6px;
+    text-align: center;
     font-size: 12px;
+    color: #000;
+    background-color: #EEE;
+    min-width: 200px;
+    padding: 2px;
     position: absolute;
-    z-index: 1;
-    top: -5px;
-    left: 103%
+    right: 25px;
+    top: 5px;
 }
 
 .infoIcon:hover .infoBubble {

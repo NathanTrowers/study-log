@@ -1,5 +1,5 @@
 version: '3.3'
-services:  
+services: 
   mongo-db:
     command: --auth
     container_name: mongo-db
@@ -16,7 +16,8 @@ services:
     container_name: spirit-library
     build: ./study-buddy-api
     environment:
-      - DATABASE_URL=mongodb://Admin:AdM1n@mongo-db:27017/ 
+      - DATABASE_URL=mongodb://Admin:AdM1n@mongo-db:27017/
+      - DATABASE_NAME=StudyLog
       - ADDRESS=localhost
       - PORT=3000
     deploy:

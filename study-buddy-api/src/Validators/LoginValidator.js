@@ -6,7 +6,7 @@ import operationOutcome from "../Constants/OperationOutcomeConstants.js";
 
 const validateLogin = async (req) => {
     let {email, password: enteredPassword } = req.body;
-    
+
     const emailFormat  = /[A-Za-z0-9.-]+?@[A-Za-z0-9.-]+?\.[a-z]{2,}/;
     if (!emailFormat.test(email)) {
         return null;

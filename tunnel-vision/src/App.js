@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import AppRoutes from './Components/Routing/AppRoutes';
+import AppRoutes from './Components/Routes/AppRoutes';
 
 function App() {
   return (

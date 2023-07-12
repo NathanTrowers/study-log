@@ -7,12 +7,12 @@ const Welcome = () => {
             <h1 data-test='welcome-heading'> Welcome to the Study Web App! </h1>
             <div id='welcomeContainer'>
                 <button className='button'>
-                    <Link to='/login' className='noStyle'>
+                    <Link to='/login' className='noStyle accessibleLink'>
                         Login
                     </Link>
                 </button>
                 <button className='button'>
-                    <Link to='/sign-up' className='noStyle'>
+                    <Link to='/sign-up' className='noStyle accessibleLink'>
                         Sign-up
                     </Link>
                 </button>

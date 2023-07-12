@@ -1,6 +1,6 @@
 describe('Welcome Page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3001');
+    cy.visit('/');
   });
 
   it('checks that the h1 contains the right text', () => {
