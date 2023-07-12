@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from '../../../Components/Authentication/Login';
-import * as UserSlice from '../../../Components/User/UserSlice';
+import * as UserSlice from '../../../Components/Slice/UserSlice';
 import store from '../../../Store/Store';
 import * as Request from '../../../Utils/Request';
 import * as Message from '../../../Utils/Message';
@@ -43,10 +43,12 @@ describe('Test suite for Login Component', () => {
             });
         jest.spyOn(LoginValidator, 'validateLogin')
             .mockImplementation(() => true);
+
         jest.spyOn(Message, 'setSuccessMessage')
             .mockImplementation(() => {
                 return {class: 'success', text: 'Login successful!, Welcome Studying Addict2'}
             });
+
         jest.spyOn(UserSlice, 'setUser')
             .mockImplementation(() => jest.fn());
 

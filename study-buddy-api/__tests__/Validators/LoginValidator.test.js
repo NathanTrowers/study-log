@@ -16,6 +16,7 @@ describe('Test Suite for the Login Validator', () => {
     ])('returns a user object when the right credentials are given', async ({ rightEmailFormat }) => {
         /** Data */
         let expectedResult = {
+            id:            '63f3c7392deb6400c51b2b18',
             email:          rightEmailFormat,
             dateCreated:    '22-04-2-2020 9:34',
             userName:       'Studying Addict2'

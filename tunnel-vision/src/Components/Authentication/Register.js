@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import InfoIcon from '../InfoIcon';
 import { validateRegistration } from '../../Validators/RegistrationValidator';
 import { post } from '../../Utils/Request';
@@ -94,6 +94,14 @@ const Register = () => {
                         Sign-up
                     </button>
                 </form>
+
+                <p> 
+                    Already signed-up?
+                    <br />
+                    <Link to='/login' className='link'>
+                        Login instead
+                    </Link>
+                </p>
             </>
     );
 }

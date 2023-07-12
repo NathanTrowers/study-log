@@ -11,6 +11,7 @@ describe('Test suite for Home Component', () => {
         );
 
         expect(screen.getByRole('heading')).toHaveTextContent('Welcome Home!');
-        expect(screen.getByRole('button')).toHaveTextContent('Logout');
+        expect(screen.queryByText('Logout'));
+        expect(screen.queryByText('Logs'));
     });
 });

@@ -27,16 +27,9 @@ describe('Test Suite for the Registration Validator', () => {
 
         /** Mocks */
         jest.spyOn(MongoConnect, 'findUser')
-        .mockImplementation(() => Promise.resolve(
-            {
-                status: operationOutcome.FAILURE,
-                response: { 
-                    message : `unable to find user with email ${rightEmailFormat}`
-                }
-            }
-        ))
+            .mockImplementation(() => Promise.resolve({}));
         jest.spyOn(MongoConnect, 'createUser')
-        .mockImplementation(() => Promise.resolve(
+            .mockImplementation(() => Promise.resolve(
             {
                 status: operationOutcome.SUCCESS,
                 response: { 
@@ -137,18 +130,18 @@ describe('Test Suite for the Registration Validator', () => {
 
         /** Mocks */
         jest.spyOn(MongoConnect, 'findUser')
-        .mockImplementation(() => Promise.resolve(
-            {
-                status: operationOutcome.SUCCESS,
-                response:{
-                    _id:            '63f3c7392deb6400c51b2b18',
-                    password:       '$2a$10$KviWp.9Ayd5CXn2WhRbmZO0b7lmpy4Gp95v3T/bOMtOdqDfnpbdNe',
-                    email:          'test9@test.com',
-                    dateCreated:    '22-04-2-2020 9:34',
-                    userName:       'Studying Addict2'
+            .mockImplementation(() => Promise.resolve(
+                {
+                    status: operationOutcome.SUCCESS,
+                    response:{
+                        _id:            '63f3c7392deb6400c51b2b18',
+                        password:       '$2a$10$KviWp.9Ayd5CXn2WhRbmZO0b7lmpy4Gp95v3T/bOMtOdqDfnpbdNe',
+                        email:          'test9@test.com',
+                        dateCreated:    '22-04-2-2020 9:34',
+                        userName:       'Studying Addict2'
+                    }
                 }
-            }
-        ));
+            ));
           
           /** Service to Test */
           let response = await validateRegistration(req);
@@ -171,23 +164,23 @@ describe('Test Suite for the Registration Validator', () => {
 
         /** Mocks */
         jest.spyOn(MongoConnect, 'findUser')
-        .mockImplementation(() => Promise.resolve(
-            {
-                status: operationOutcome.FAILURE,
-                response: { 
-                    message : `unable to find user with email test9@test.com`
+            .mockImplementation(() => Promise.resolve(
+                {
+                    status: operationOutcome.FAILURE,
+                    response: { 
+                        message : `unable to find user with email test9@test.com`
+                    }
                 }
-            }
-        ))
+            ));
         jest.spyOn(MongoConnect, 'createUser')
-        .mockImplementation(() => Promise.resolve(
-            {
-                status: operationOutcome.FAILURE,
-                response: { 
-                    message : 'an error occurred when performing the insertOne operation'
+            .mockImplementation(() => Promise.resolve(
+                {
+                    status: operationOutcome.FAILURE,
+                    response: { 
+                        message : 'an error occurred when performing the insertOne operation'
+                    }
                 }
-            }
-        ));
+            ));
           
           /** Service to Test */
           let response = await validateRegistration(req);

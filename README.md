@@ -2,15 +2,22 @@
 
 On this page:
 
-1. [mongo-db-backup](#for-mongo-db-backup)
-2. [study-buddy-api](#for-study-buddy-api)
-3. (WIP for FE isntructions)
+1. [General Instructions](#General-Instructions)
+2. [mongo-db-backup](#mongo-db-backup)
+3. [study-buddy-api](#study-buddy-api-and-tunnel-vision)
 
-After doing a `git pull` of the repo :
+<br />
 
-## For **mongo-db-backup**
 
-- run
+# General-Instructions
+After doing a `git pull` of the repo you may start the application using the `sudo docker compose up` command, but the database will be empty if this is your first time running the command.
+
+<br />
+
+
+# **mongo-db-backup**
+
+### Instructions for setting the repository databse as the container's database
 
 ``` Shell Script
 $# docker-compose up mongo-db
@@ -40,12 +47,8 @@ root@mongo-db$ mongodump -u Admin -p AdM1n --out=/backup/
 root@mongo-db$ exit
 ```
 
-## For **study-buddy-api**
+<br />
 
-- If you want to run ***study-buddy-api*** outside of the dockker container, navigate to the folder from the command line and run:
+# **study-buddy-api** and **tunnel-vision**
 
-``` Shell Script
-npm install
-```
-
-Simple as that!
+There are no special installation instructions for **study-buddy-api** and **tunnel-vision**. They will run smoothly when `sudo docker compose up` or `sudo docker compose up spirit-library tunnel-vision` is run. The container name for **study-buddy-api** is *spirit-library*.

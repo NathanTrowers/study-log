@@ -17,10 +17,12 @@ const validateRegistration = async (req) => {
     ) {
         return operationOutcome.FAILURE;
     }
+
     const query = await findUser(email);
     if(query.response) {
         return operationOutcome.FAILURE;
     }
+    
     const hashedPassword = bcrypt.hashSync(password, 10);
     const response = await createUser(email, hashedPassword, userName);
     if (response.status !== operationOutcome.SUCCESS) {

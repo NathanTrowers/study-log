@@ -9,9 +9,8 @@ import validateRegistration  from '../Validators/RegistrationValidator.js';
 export const isLoggedIn = (req, res, next) => {
     req.session.authorized
         ? next()
-        : res.status(success.OK)
+        : res.status(clientError.UNAUTHORIZED)
             .json({ 
-                message: 'Hi there scholar, let\'s see those credentials!', 
                 isLoggedIn: false
             });
 }
@@ -52,8 +51,16 @@ export const login = async (req, res, next) => {
 }
 
 export const logout = (req, res) => {
-    req.session.destroy();
-    res.redirect('login');
+    try{
+        req.session.destroy();
+        res.clearCookie('sessionId', { httpOnly: true });
+        res.status(success.ACCEPTED)
+            .json({ 
+                isLoggedIn: false
+            });
+    } catch (error) {
+        console.log('Something went wrong while logging out', error);
+    }
 }
 
 export const register = async (req, res, next) => {

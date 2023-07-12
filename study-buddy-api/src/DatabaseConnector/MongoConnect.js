@@ -2,7 +2,7 @@
 
 import mongo from "mongodb";
 import { v4 as uuidv4 } from 'uuid';
-import { DATABASE_URL } from "../Constants/GeneralConstants.js";
+import { DATABASE_URL, DATABASE_NAME } from "../Constants/GeneralConstants.js";
 import operationOutcome from "../Constants/OperationOutcomeConstants.js";
 
 const { MongoClient } = mongo; 
@@ -14,7 +14,7 @@ export const createUser = async (email, hashedPassword, userName) => {
       await client.connect();
       console.log("Connected to database");
 
-      const response = await client.db('StudyLog')
+      const response = await client.db(DATABASE_NAME)
           .collection('Login')
           .insertOne({
             _id: uuidv4(),
@@ -49,7 +49,7 @@ export const findUser = async email => {
         await client.connect();
         console.log("Connected to database");
 
-        const response = await client.db('StudyLog')
+        const response = await client.db(DATABASE_NAME)
             .collection('Login')
             .findOne({ email: email });
         console.log("Operation successfull");
@@ -78,7 +78,7 @@ export const findLogs = async id => {
       await client.connect();
       console.log("Connected to database");
       
-      const response = await client.db('StudyLog')
+      const response = await client.db(DATABASE_NAME)
         .collection('Log')
         .find({ userId: id })
         .toArray();

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch , useSelector} from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { selectUser, setUser } from '../User/UserSlice';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { selectUser, setUser } from '../Slice/UserSlice';
 import { validateLogin } from '../../Validators/LoginValidator';
 import { post } from '../../Utils/Request';
 import { setFailMessage, setSuccessMessage } from '../../Utils/Message';
@@ -12,13 +12,16 @@ const Login = () => {
     const [ message, setMessage ] = useState({});
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/home';
+
     useSelector(selectUser);  // the success message only shows when this is present.
 
     const handleChange = ({ target }) => {
         setFormData(values => ({...values, [target.name]: target.value}));
     }
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async event => {
         event.preventDefault();
         if (validateLogin(formData)) {
             try {
@@ -28,7 +31,7 @@ const Login = () => {
                 });
 
                 storeUserInfo(response);
-                setTimeout(() => navigate('/home'), 3000);
+                setTimeout(() => navigate(from, { replace: true }), 3000);
                 return ;
             } catch (error) {
                 setMessage(setFailMessage('error'));
@@ -39,9 +42,10 @@ const Login = () => {
     }
 
     const storeUserInfo = response => {
-        const { dateCreated, email, userName } = response.data.user;
+        const { id, dateCreated, email, userName } = response.data.user;
+
         dispatch(
-            setUser({dateCreated, email, userName})
+            setUser({id, dateCreated, email, userName})
         );
         
         return setMessage(setSuccessMessage(`${response.data.message}  Welcome ${userName}`));
@@ -74,6 +78,14 @@ const Login = () => {
                     Login
                 </button>
             </form>
+
+            <p> 
+                Are you new here?
+                <br />
+                <Link to='/sign-up' className='link'>
+                    Sign-up instead
+                </Link>
+            </p>
         </>
     );
 }

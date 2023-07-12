@@ -37,8 +37,16 @@
   }
 }
 
+@keyframes buttonHighlight {
+  0% {background-image: linear-gradient(#2E8B57, #2E8B57);}
+  250% {background-image: linear-gradient(#2E8B57, #2E8B57 #00FFFF);}
+  50% {background-image: linear-gradient(#2E8B57, #00FFFF);}
+  75% {background-image: linear-gradient(#2E8B57, #00FFFF, #00FFFF);}
+  100% {background-image: linear-gradient(#00FFFF, #00FFFF);}
+}
+
 .button {
-  background-color: #2E8B57;
+  background-image: linear-gradient(#2E8B57, #2E8B57);
   color: #FFF;
   text-decoration: none;
   font-size: 20px;
@@ -49,15 +57,24 @@
 }
 
 .button:hover {
-  background-color: #00FFFF;
+  background-image: linear-gradient(#00FFFF, #00FFFF);
   color: #000000;
-  border: 2px solid #00FFFF;
+  animation-name: buttonHighlight;
+  animation-duration: 0.2s;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+
 }
 
 .noStyle {
-  background-color: inherit;
   color: inherit;
   font-size: inherit;
   border: none;
   text-decoration: none;
+}
+
+.accessibleLink {
+  display: block;
+  width: inherit;
 }
