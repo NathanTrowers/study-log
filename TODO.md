@@ -6,18 +6,12 @@ As a logged-in user, I want to view my recorded study sessions (date,start and e
 
 ## ACCEPTANCE CRITERIA
 
-+ Clicking the "View Sesions" tab reroutes to the '/logs' endpoint. The sessions should be visible there.
++ A successfully validated payload should save the userId of the creator, the subject, the details, the rated understanding, the duration, the date created, the start time and the end time for the log
 
-+ The sessions can be filtered by typing the subject in the search bar.
-
-+ An error message is shown when the sessions cannot be shown.
-
++ A failed validation returns an error code associated with the validation errors found. All fields are to be validated.
 
 REQUIREMENTS REMAINING
 
-+ R3 View Logs
 + R2 Create Log
 + R4 Update Log
 + R5 Delete Log
-
-Registration, Login

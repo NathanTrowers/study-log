@@ -100,3 +100,40 @@ export const findLogs = async id => {
       console.log("Database connection closed");
     }
 }
+
+export const saveNewLog = async (userId, subject, details,
+  ratedUnderstanding, duration, date, 
+  startTime, endTime) => {
+  const client = new MongoClient(DATABASE_URL, { useUnifiedTopology: true });
+
+  try {
+      await client.connect();
+      console.log("Connected to database");
+      
+      await client.db(DATABASE_NAME)
+        .collection('Log')
+        .insertOne({ 
+          _id: uuidv4(),
+          userId: userId,
+          subject: subject,
+          details: details,
+          ratedUnderstanding: ratedUnderstanding,
+          duration: duration,
+          date: date,
+          startTime: startTime,
+          endTime: endTime
+         });
+      console.log("Operation successfull");
+
+      return operationOutcome.SUCCESS;
+    } catch (MongoNetworkError) {
+      console.error('Something went wrong while finding the logs.', MongoNetworkError)
+
+      return {
+        status:   operationOutcome.FAILURE,
+      };
+    } finally {
+      client.close();
+      console.log("Database connection closed");
+    }
+}
