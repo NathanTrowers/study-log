@@ -3,6 +3,7 @@
 import { success, clientError, serverError } from '../Constants/HttpCodeConstants.js';
 import operationOutcome from '../Constants/OperationOutcomeConstants.js';
 import { findLogs } from '../DatabaseConnector/MongoConnect.js';
+import validateLogInput from '../Validators/LogInputValidator.js'
 
 
 export const getAllLogs = async (req, res, next) => {
@@ -22,6 +23,29 @@ export const getAllLogs = async (req, res, next) => {
             .json({
                 message: 'An error occurred'
             });
+    } finally {
+        next();
+    }
+}
+
+export const setNewLog = async (req, res, next) => {
+    try {
+        const { status, validationErrors } = await validateLogInput(req.body);
+
+        if (status === operationOutcome.FAILURE) {
+            throw Error;
+        }
+
+        validationErrors.length > 0
+            ? res.status(clientError.BAD_REQUEST)
+                .json({ validationErrors })
+            : res.status(success.CREATED)
+                .json({recordAdded: true});
+    } catch (error) {
+        res.status(serverError.INTERNAL_SERVER_ERROR)
+        .json({
+            message: 'An error occurred'
+        });
     } finally {
         next();
     }
