@@ -89,7 +89,7 @@ describe('Suite of tests for the "validateRegistration" function', () => {
         {wrongPasswordConfirmation: 'Name@Example-'},
         {wrongPasswordConfirmation: ''},
         {wrongPasswordConfirmation: 'eXAMPLE!123'},
-    ])('tests that "false" is returned when "$wrongPasswordConfirmation" does not match "Example!123" as the passowrd', ({ wrongPasswordConfirmation }) => {
+    ])('tests that "false" is returned when "$wrongPasswordConfirmation" does not match "Example!123" as the password', ({ wrongPasswordConfirmation }) => {
         /**Arrange */
         let formData = {
             email: 'name@example.com',

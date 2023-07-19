@@ -1,9 +1,15 @@
 export const formMessages = {
-    EMAIL_FORMAT:           'Only letters, numbers, \'@\', \'.\' and \'-\' are allowed. \n Ex: name@example.com',
-    PASSWORD_FORMAT:        'Only letters, numbers, \'@\', \'.\', \'!\', \'?\' and \'-\' are allowed. \n Ex: Example!123',
-    PASSWORD_CONFIRMATION:  'This must match the above password entered.',
-    USERNAME_FORMAT:        'Only letters and numbers, spaces and hyphens (-) are allowed.'
-                            + ' The name must be at least three characters long. Ex: Example Name'
+    EMAIL_FORMAT:               'Only letters, numbers, \'@\', \'.\' and \'-\' are allowed. \n Ex: name@example.com',
+    PASSWORD_FORMAT:            'Only letters, numbers, \'@\', \'.\', \'!\', \'?\' and \'-\' are allowed. \n Ex: Example!123',
+    PASSWORD_CONFIRMATION:      'This must match the above password entered.',
+    USERNAME_FORMAT:            'Only letters and numbers, spaces and hyphens (-) are allowed.'
+                                + ' The name must be at least three characters long. Ex: Example Name',
+    SUBJECT_FORMAT:             'Only letters, numbers, apostrophes (\'), \'#\' and \'-\' are allowed.  Ex: MERN Stack Web-Dev',
+    DETAILS_FORMAT:             'All characters except \'{}\', \'^\' and \'`\' are allowed.',
+    RATED_UNDERSTANDING_FORMAT: 'Only numbers 1 through 10 are allowed.',
+    DURATION_NOTICE:            'The duration field is automatically calculated by the app.',
+    START_TIME_NOTICE:          'The start time field is automatically calculated by the app.',
+    END_TIME_NOTICE:            'The end time field is automatically calculated by the app.'
 }
 
 /**

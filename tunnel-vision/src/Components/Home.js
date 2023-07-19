@@ -16,6 +16,11 @@ const Home = () => {
                         Logs
                     </Link>
                 </button>
+                <button className='button'>
+                    <Link to='../study-session' className='noStyle accessibleLink'>
+                        Start Studying
+                    </Link>
+                </button>
             </div>
         </div>
     )
