@@ -19,12 +19,12 @@ export const logsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchLogsForCurrentUser.pending, state => {
-            state.loading = true
+            state.loading = true;
         });
         builder.addCase(fetchLogsForCurrentUser.fulfilled, (state, action) => {
             state.loading = false;
             state.logs = action.payload;
-            state.error = ''
+            state.error = '';
         });
         builder.addCase(fetchLogsForCurrentUser.rejected, (state, action) => {
             state.loading = false;

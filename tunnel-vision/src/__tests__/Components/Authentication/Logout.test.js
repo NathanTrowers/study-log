@@ -1,10 +1,9 @@
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
 import Logout from '../../../Components/Authentication/Logout';
-import store from '../../../Store/Store';
+import { store } from '../../../Store/Store';
 import * as Request from '../../../Utils/Request';
-
 
 describe('Test suite for Logout Component', () => {
     it.each([

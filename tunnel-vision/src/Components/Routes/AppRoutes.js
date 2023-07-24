@@ -5,6 +5,8 @@ import Register from '../Authentication/Register';
 import RequireAuth from '../Authentication/RequireAuth';
 import Home from '../Home';
 import LogsContainer from '../Log/LogsContainer';
+import NewLog from '../Log/NewLog';
+import StudySession from '../Log/StudySession';
 import NotFound from '../NotFound';
 import Welcome from '../Welcome';
 
@@ -18,6 +20,8 @@ const AppRoutes = () => {
                 <Route element={<RequireAuth />}>           
                     <Route path='/home' element={<Home />} />
                     <Route path='/logs' element={<LogsContainer />} />
+                    <Route path='/study-session' element={<StudySession />} />
+                    <Route path='/new-log' element={<NewLog />} /> 
                 </Route>
                 <Route path='*' element={<NotFound />}/>
             </Routes>

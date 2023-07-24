@@ -1,4 +1,4 @@
-# Study-Webapp Installation Instructions
+# Study-WebApp Installation Instructions
 
 On this page:
 

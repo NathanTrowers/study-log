@@ -35,6 +35,7 @@ const Register = () => {
                 return;
             }
         }
+        
         setMessage(setFailMessage('invalid'));
     }
 
@@ -48,9 +49,9 @@ const Register = () => {
             <form className='signUpForm' data-testid='form' onSubmit={handleSubmit}>
                     <input
                         data-test='email-input'
-                        type="email"
-                        name="email"
-                        placeholder="Email Address"
+                        type='email'
+                        name='email'
+                        placeholder='Email Address'
                         value={formData.email || ''}
                         onChange={handleChange}
                     />
@@ -59,9 +60,9 @@ const Register = () => {
                     />
                     <input
                         data-test='password-input'                 
-                        type="password"
-                        name="password" 
-                        placeholder="Password"
+                        type='password'
+                        name='password' 
+                        placeholder='Password'
                         vaule={formData.password || ''}
                         onChange={handleChange}
                     />
@@ -70,9 +71,9 @@ const Register = () => {
                     />
                     <input
                         data-test='password-confirmation-input'                 
-                        type="password"
-                        name="passwordConfirmation" 
-                        placeholder="Password Confirmation"
+                        type='password'
+                        name='passwordConfirmation' 
+                        placeholder='Password Confirmation'
                         vaule={formData.passwordConfirmation || ''}
                         onChange={handleChange}
                     />
@@ -81,16 +82,16 @@ const Register = () => {
                     />
                     <input
                         data-test='username-input'                 
-                        type="text"
-                        name="userName" 
-                        placeholder="Username"
+                        type='text'
+                        name='userName' 
+                        placeholder='Username'
                         vaule={formData.userName || ''}
                         onChange={handleChange}
                     />
                     <InfoIcon
                         infoBubbleText={formMessages.USERNAME_FORMAT}
                     />
-                    <button className='button' name="register-button" value="submit">
+                    <button className='button' name='register-button' value='submit'>
                         Sign-up
                     </button>
                 </form>

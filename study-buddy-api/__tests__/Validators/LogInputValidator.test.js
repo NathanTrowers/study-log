@@ -124,7 +124,7 @@ describe('Test Suite for the Log Input Validator', () => {
     it.each([
         {wrongDurationFormat: '009'},
         {wrongDurationFormat: '00:03:00:9999'},
-        {wrongDurationFormat: '00:23-00:000'},
+        {wrongDurationFormat: '00:23-00:00'},
         {wrongDurationFormat: '99:99:99:99'},
     ])('returns the duration validation error when $wrongDurationFormat is given', async ({ wrongDurationFormat }) => {
         /** Data */

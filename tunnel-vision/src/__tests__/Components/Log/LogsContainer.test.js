@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import LogsContainer from '../../../Components/Log/LogsContainer';
 import * as LogsSlice from '../../../Components/Slice/LogsSlice';
 import * as SearchQuerySlice from '../../../Components/Slice/SearchQuerySlice';
-import MockLogData from './_data/MockLogData';
+import MockLogData from '../../../__testMocks__/Log/MockLogData';
 
 jest.mock('react-redux', () => ({
     useDispatch: jest.fn(() => jest.fn()),
@@ -27,7 +27,7 @@ describe('Test suite for the LogContainer component', () => {
             error: errorMessage
            }
         });
-        reactRedux.useSelector.mockImplementationOnce(() => '');
+        reactRedux.useSelector.mockImplementationOnce(() => {return { searchQuery:  '' }});
         
         jest.spyOn(LogsSlice, 'fetchLogsForCurrentUser')
             .mockImplementation(() => MockLogData);

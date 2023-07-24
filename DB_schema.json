@@ -12,10 +12,10 @@
         "subject": "MERN Stack Web Dev",
         "details": "setup for API testing complete",
         "ratedUnderstanding": "8 of 10",
-        "duration": "20 min",
-        "date": "2023-04-19T13:55:49.549Z",
-        "startTime": "13:30",
-        "endTime": "13:50"
+        "duration": "00:20:00:00",
+        "date": "2023-04-19 13:55:49.549",
+        "startTime": "13:30:00:000",
+        "endTime": "13:50:00:000"
     },
     "Session": {
         "_id": "66980f91-e73d-47b3-c400-f10423a9c9ee",

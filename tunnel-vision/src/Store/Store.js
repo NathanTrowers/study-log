@@ -1,14 +1,40 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from '../Components/Slice/UserSlice';
-import logsReducer from '../Components/Slice/LogsSlice';
-import searchQueryReducer from '../Components/Slice/SearchQuerySlice';
+import {
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import rootReducer from './RootReducer';
 
-const store = configureStore({
-    reducer: {
-        user:           userReducer,
-        logs:           logsReducer,
-        searchQuery:    searchQueryReducer
-    }
+const persistConfig = {
+    key: 'root',
+    version: 1,
+    storage
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+    reducer: persistedReducer,
+    middleware:(getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [
+                    FLUSH,
+                    REHYDRATE,
+                    PAUSE,
+                    PERSIST,
+                    PURGE,
+                    REGISTER
+                ]
+            }
+        })
 });
 
-export default store;
+export const persistor = persistStore(store);

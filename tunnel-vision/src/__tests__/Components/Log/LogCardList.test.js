@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react'
 import LogCardList from "../../../Components/Log/LogCardList";
-import MockLogData from './_data/MockLogData';
+import MockLogData from '../../../__testMocks__/Log/MockLogData';
 
 describe('Test fro the LogCardList Component', () => {
     it('renders itself and child components without crashing', () => {

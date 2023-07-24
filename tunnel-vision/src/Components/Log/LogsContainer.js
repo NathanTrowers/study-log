@@ -8,9 +8,9 @@ import { selectUser } from '../Slice/UserSlice';
 
 const LogsContainer = () => {
     const dispatch = useDispatch();
-    let user = useSelector(selectUser).user;
+    let { user } = useSelector(selectUser);
     let logs = useSelector(selectLogs);
-    let searchQuery = useSelector(selectSearchQuery);
+    let { searchQuery } = useSelector(selectSearchQuery);
 
     if (logs.logs.length === 0) {
         dispatch(fetchLogsForCurrentUser(user));

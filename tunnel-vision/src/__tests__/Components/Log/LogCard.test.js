@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react'
 import LogCard from "../../../Components/Log/LogCard";
-import MockLogData from './_data/MockLogData';
+import MockLogData from '../../../__testMocks__/Log/MockLogData';
 
 describe('Test fro the LogCard Component', () => {
     it('renders without crashing', () => {

@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import Footer from './Components/Footer';
 import AppRoutes from './Components/Routes/AppRoutes';
+
 
 function App() {
   return (
@@ -9,6 +11,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <AppRoutes />
       </header>
+      <Footer />
     </div>
   );
 }
