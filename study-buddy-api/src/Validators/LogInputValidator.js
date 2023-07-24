@@ -2,9 +2,49 @@
 
 import { validationErrorCodes } from '../Constants/FieldErrorCodeConstants.js';
 import operationOutcome from '../Constants/OperationOutcomeConstants.js';
-import { saveNewLog } from '../DatabaseConnector/MongoConnect.js';
+import { editExistingLog, saveNewLog } from '../DatabaseConnector/MongoConnect.js';
 
-const validateLogInput = async ({ userId, subject, details,
+export const validateEditLogInput = async ({ logId, userId, subject, details,
+    ratedUnderstanding }) => {
+
+    const userIdFormat = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+    const subjectFormat = /^[0-9A-Za-z'\-. #]{2,}$/;
+    const detailsFormat = /^[0-9A-Za-z'"\-.<>\\!/?@#&$()=+;:%* ][^{}^`]{2,}$/gm;
+    const ratedUnderstandingFormat = /^([0-9]|10) of 10$/;
+
+    let validationErrors = [];
+
+    if (!userIdFormat.test(userId)) {
+        validationErrors.push(validationErrorCodes.ERROR_USER_ID_FORMAT);
+    }
+    if (!userIdFormat.test(logId)) {
+        validationErrors.push(validationErrorCodes.ERROR_LOG_ID_FORMAT);
+    }
+    if(!subjectFormat.test(subject)) {
+        validationErrors.push(validationErrorCodes.ERROR_SUBJECT_FORMAT);
+    }
+    if(!detailsFormat.test(details)) {
+        validationErrors.push(validationErrorCodes.ERROR_DETAILS_FORMAT);
+    }
+    if(!ratedUnderstandingFormat.test(ratedUnderstanding)) {
+        validationErrors.push(validationErrorCodes.ERROR_RATED_UNDERSTANDING_FORMAT);
+    }
+ 
+    let status;
+    !validationErrors.length > 0
+        ? status = await editExistingLog(
+                logId, userId, subject, 
+                details, ratedUnderstanding
+            )
+        : status = operationOutcome.VALIDATION_FAILURE;
+        
+    return {
+        status,
+        validationErrors
+    }
+}
+
+export const validateNewLogInput = async ({ userId, subject, details,
     ratedUnderstanding, duration, date, 
     startTime, endTime }) => {
 
@@ -57,5 +97,3 @@ const validateLogInput = async ({ userId, subject, details,
         validationErrors
     }
 }
-
-export default validateLogInput;

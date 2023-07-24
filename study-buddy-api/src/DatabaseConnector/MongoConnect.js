@@ -42,6 +42,39 @@ export const createUser = async (email, hashedPassword, userName) => {
     }
 }
 
+export const editExistingLog = async (logId, userId, subject, 
+  details, ratedUnderstanding)  => {
+    const client = new MongoClient(DATABASE_URL, { useUnifiedTopology: true });
+  
+    try {
+        await client.connect();
+        console.log("Connected to database");
+        
+        await client.db(DATABASE_NAME)
+          .collection('Log')
+          .updateOne({
+              userId: userId,
+              _id: logId
+            },
+            { $set: { 
+                subject: subject,
+                details: details,
+                ratedUnderstanding: ratedUnderstanding,
+              }
+          });
+        console.log("Operation successfull");
+  
+        return operationOutcome.SUCCESS;
+      } catch (MongoNetworkError) {
+        console.error('Something went wrong while updating the log.', MongoNetworkError)
+  
+        return operationOutcome.FAILURE;
+      } finally {
+        client.close();
+        console.log("Database connection closed");
+      }
+  }
+
 export const findUser = async email => {
     const client = new MongoClient(DATABASE_URL, { useUnifiedTopology: true });
 
@@ -129,9 +162,7 @@ export const saveNewLog = async (userId, subject, details,
     } catch (MongoNetworkError) {
       console.error('Something went wrong while finding the logs.', MongoNetworkError)
 
-      return {
-        status:   operationOutcome.FAILURE,
-      };
+      return operationOutcome.FAILURE;
     } finally {
       client.close();
       console.log("Database connection closed");
