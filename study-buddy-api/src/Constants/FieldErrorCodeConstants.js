@@ -7,5 +7,6 @@ export const validationErrorCodes = {
     ERROR_DURATION_FORMAT:              400001005,
     ERROR_DATE_FORMAT:                  400001006,
     ERROR_START_TIME_FORMAT:            400001007,
-    ERROR_END_TIME_FORMAT:              400001008
+    ERROR_END_TIME_FORMAT:              400001008,
+    ERROR_LOG_ID_FORMAT:                400001009
 }
