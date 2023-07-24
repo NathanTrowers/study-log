@@ -30,6 +30,10 @@
     padding: 10px;
 }
 
+.signUpForm > button {
+    grid-column: 1/span 2;
+}
+
 .link {
     color: #00FFFF;
 }

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import MockLogData from './_data/MockLogData';
+import MockLogData from '../../../__testMocks__/Log/MockLogData';
 import * as UserSlice from '../../../Components/Slice/UserSlice';
 import * as LogsSlice from '../../../Components/Slice/LogsSlice';
 import * as TimeSlice from '../../../Components/Slice/TimeSlice';

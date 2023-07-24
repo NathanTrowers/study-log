@@ -1,46 +1,44 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { validateLogInput } from '../../Validators/LogInputValidator'
 import InfoIcon from '../InfoIcon';
 import { selectUser } from '../Slice/UserSlice';
 import { fetchLogsForCurrentUser } from '../Slice/LogsSlice';
 import { selectTime } from '../Slice/TimeSlice';
 import { formMessages, setFailMessage, setSuccessMessage } from '../../Utils/Message';
 import { post } from '../../Utils/Request';
+import { validateLogInput } from '../../Validators/LogInputValidator'
 import '../_styles/Form.css';
+import './_styles/Logs.css';
 
 const NewLog = () => {
-/**
- * accept input, validate input, send to back-end, redirect to Home or show error
- * 
- * selectUser.id, subject, details, ratedUnderstanding, calculate duration, auto record date, auto-record, start time, auto-record end-time
- */
     const [ message, setMessage ] = useState({});
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user = useSelector(selectUser);
+    const { user } = useSelector(selectUser);
     const { time } = useSelector(selectTime);
-    const { duration, startTime, endTime } = time; 
+    const { date, duration, startTime, endTime } = time; 
     const [ formData, setFormData ] = useState({
-        duration: duration,
+        date:       `${date}`,
+        duration:   duration,
         startTime: startTime,
-        endTime: endTime
+        endTime:    endTime
     });
 
     const handleChange = ({ target }) => {
         setFormData(values => ({...values, [target.name]: target.value}));
     }
-
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         if (validateLogInput(formData)) {
             try {
                 const response = await post('/log', {
                     userId:                 user.id,
                     subject:                formData.subject,
                     details:                formData.details,
-                    ratedUnderstanding:     formData.ratedUnderstanding,
+                    ratedUnderstanding:     `${formData.ratedUnderstanding} of 10`,
                     duration:               formData.duration,
                     date:                   formData.date,
                     startTime:              formData.startTime,
@@ -69,7 +67,7 @@ const NewLog = () => {
                     {message.text}
                 </div>
             }
-            <form className='newLogForm' data-testid='form' onSubmit={handleSubmit}>
+            <form id='newLogForm' data-testid='form' onSubmit={handleSubmit}>
                     <input
                         data-test='subject-input'
                         type='subject'
@@ -95,15 +93,17 @@ const NewLog = () => {
                      <InfoIcon
                         infoBubbleText={formMessages.DETAILS_FORMAT}
                     />
-                    <input
-                        data-test='rated-understanding-input'                 
-                        type='ratedUnderstanding'
-                        name='ratedUnderstanding' 
-                        placeholder='5'
-                        vaule={formData.ratedUnderstanding || ''}
-                        onChange={handleChange}
-                    />
-                    <p> of 10</p>
+                    <p className='ratingBox'>
+                        Rated Understanding: 
+                        <input
+                            data-test='rated-understanding-input'                 
+                            type='ratedUnderstanding'
+                            name='ratedUnderstanding' 
+                            placeholder='5'
+                            vaule={formData.ratedUnderstanding || ''}
+                            onChange={handleChange}
+                        /> of 10
+                    </p>
                     <InfoIcon
                         infoBubbleText={formMessages.RATED_UNDERSTANDING_FORMAT}
                     />
@@ -113,6 +113,7 @@ const NewLog = () => {
                         data-testid='duration' 
                         name='duration' 
                         vaule={formData.duration}
+                        placeholder={formData.duration}
                         disabled
                     />
                     <InfoIcon
@@ -124,6 +125,7 @@ const NewLog = () => {
                         data-testid='startTime' 
                         name='startTime' 
                         vaule={formData.startTime}
+                        placeholder={formData.startTime}
                         disabled
                     />
                     <InfoIcon
@@ -135,6 +137,7 @@ const NewLog = () => {
                         data-testid='endTime' 
                         name='endTime' 
                         vaule={formData.endTime}
+                        placeholder={formData.endTime}
                         disabled
                     />
                     <InfoIcon

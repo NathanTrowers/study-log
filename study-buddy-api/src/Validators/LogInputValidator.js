@@ -9,10 +9,10 @@ const validateLogInput = async ({ userId, subject, details,
     startTime, endTime }) => {
 
     const userIdFormat = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-    const subjectFormat = /^[0-9A-Za-z'\-\. #]{2,}$/;
-    const detailsFormat = /^[0-9A-Za-z'"\-\. <>\\\!\/\?@\#&\$(\)\=\+;:%\* ][^{}\^`]{2,}$/gm;
+    const subjectFormat = /^[0-9A-Za-z'\-. #]{2,}$/;
+    const detailsFormat = /^[0-9A-Za-z'"\-.<>\\!/?@#&$()=+;:%* ][^{}^`]{2,}$/gm;
     const ratedUnderstandingFormat = /^([0-9]|10) of 10$/;
-    const durationFormat = /^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9]:[0-9]{3}$/;
+    const durationFormat = /^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9]:[0-9]{2}$/;
     const dateFormat = /^2[0-9]{3}-(0[1-9]|1[012])-([012][1-9]|3[01]) ([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9]:[0-9]{3}$/;
     const startTimeFormat = /^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9]:[0-9]{3}$/;
     const endTimeFormat = /^([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9]:[0-9]{3}$/;
@@ -21,7 +21,6 @@ const validateLogInput = async ({ userId, subject, details,
     if (!userIdFormat.test(userId)) {
         validationErrors.push(validationErrorCodes.ERROR_USER_ID_FORMAT);
     }
-
     if(!subjectFormat.test(subject)) {
         validationErrors.push(validationErrorCodes.ERROR_SUBJECT_FORMAT);
     }

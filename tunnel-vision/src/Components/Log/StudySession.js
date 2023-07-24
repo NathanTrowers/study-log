@@ -2,17 +2,14 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setTime } from '../Slice/TimeSlice';
-import { calculateDuration, formatDate, formatTime } from '../../Utils/DataFormatter';
+import { formatDate, formatTime } from '../../Utils/DataFormatter';
+import { countTime } from '../../Utils/Stopwatch';
+import './_styles/StudySession.css';
 
 const StudySession = () => {
-    /**
-     * on load, record start time*
-     * show stopwatch*
-     * on stop record stop time*
-     */
     const [startTime, setStartTime] = useState();
-    // const [isStopped, setIsStopped] = useState(false);
-    const [clock, setClock] = useState(formatTime(new Date()));
+    const [isStopped, setIsStopped] = useState(false);
+    const [clock, setClock] = useState('00:00:00:000');
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -20,27 +17,24 @@ const StudySession = () => {
         setStartTime(new Date());
     }, []);
 
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setClock(t => countTime(t));
+        }, 10);
 
-    // useEffect(() => {
-    //     const intervalId = setInterval(() => {
-    //         setClock(
-    //             formatTime(new Date())
-    //         );
-    //     }, 1);
+        if (isStopped) {
+            clearInterval(intervalId);
+        }
 
-    //     if (isStopped) {
-    //         clearInterval(intervalId);
-    //     }
-
-    //     return () => clearInterval(intervalId);
-    // }, []);
+        return () => clearInterval(intervalId);
+    }, [isStopped]);
 
     const handleClick = event => {
         const unformattedEndTime = new Date();
-        // setIsStopped(true);
-        const duration = calculateDuration(startTime, unformattedEndTime);
+        setIsStopped(true);
+        const duration = clock;
         const endTime = formatTime(unformattedEndTime);
-        const date = formatDate(unformattedEndTime);
+        const date = formatDate(unformattedEndTime.toISOString());
 
         dispatch(setTime({
             duration: duration,
@@ -52,10 +46,10 @@ const StudySession = () => {
     }
 
     return (
-        <div>
-            <h3>
+        <>
+            <h2 id='clock'>
                 { clock }
-            </h3>
+            </h2>
 
             <button 
                 className='button'
@@ -65,7 +59,7 @@ const StudySession = () => {
             >
                 Stop Studying
             </button>
-        </div>
+        </>
     )
 }
 

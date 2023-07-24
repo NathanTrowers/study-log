@@ -1,7 +1,7 @@
-import  mockLogData from './_data/MockLogData.js';
+import  mockLogData from '../../__testMocks__/Validators/MockLogData.js';
 import { validateLogInput } from '../../Validators/LogInputValidator';
 
-describe('Suite of tests for the "validateRegistration" function', () => {
+describe('Suite of tests for the "validateLogInput" function', () => {
     it('tests that "true" is returned when valid input is entered', () => {
         /** Act */
         let response = validateLogInput(mockLogData);
@@ -45,8 +45,8 @@ describe('Suite of tests for the "validateRegistration" function', () => {
     });
 
     it.each([
-        {wrongRatedUnderstandingFormat: '11 of 10'},
-        {wrongRatedUnderstandingFormat: 'Z of 10'},
+        {wrongRatedUnderstandingFormat: '11'},
+        {wrongRatedUnderstandingFormat: 'Z'},
         {wrongRatedUnderstandingFormat: '3 of 100`'},
         {wrongRatedUnderstandingFormat: '-1 of 10'},
     ])('tests that "false" is returned when $wrongRatedUnderstandingFormat is entered', ({ wrongRatedUnderstandingFormat }) => {

@@ -1,0 +1,6 @@
+#clock {
+    display: inline-grid;
+    justify-content: left;
+    width: 145px;
+    height: auto;
+}
