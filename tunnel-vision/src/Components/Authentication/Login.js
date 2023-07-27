@@ -71,7 +71,7 @@ const Login = () => {
                     type="password"
                     name="password" 
                     placeholder="Example!123"
-                    vaule={formData.password || ''}
+                    value={formData.password || ''}
                     onChange={handleChange}
                 />
                 <button className='button' name="login-button" value="submit">

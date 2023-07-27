@@ -1,7 +1,13 @@
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react'
 import LogCard from "../../../Components/Log/LogCard";
+import * as LogsSlice from '../../../Components/Slice/LogsSlice';
 import MockLogData from '../../../__testMocks__/Log/MockLogData';
+
+jest.mock('react-redux', () => ({
+    useDispatch: jest.fn(() => jest.fn()),
+}));
+import * as reactRedux from 'react-redux';
 
 describe('Test fro the LogCard Component', () => {
     it('renders without crashing', () => {
@@ -10,11 +16,16 @@ describe('Test fro the LogCard Component', () => {
             subject, details, ratedUnderstanding,
             date, startTime, endTime, duration
         } = MockLogData[0];
-        
+        const _id = 'fe30bb44-6a64-409e-9258-2d995e7b4783';
+
+        jest.spyOn(LogsSlice, 'setSingleLogId')
+        .mockImplementation(() => _id);
+
         /** Act */
         render(
             <BrowserRouter>
-                <LogCard 
+                <LogCard
+                    _id={_id}
                     subject={subject}
                     ratedUnderstanding={ratedUnderstanding}
                     date={date}
@@ -34,5 +45,6 @@ describe('Test fro the LogCard Component', () => {
         expect(screen.getByText(`End Time: ${endTime}`));
         expect(screen.getByText(`Duration: ${duration}`));
         expect(screen.getByText(`Details: ${details}`));
+        expect(screen.getByText('Update Log'));
     });
 });

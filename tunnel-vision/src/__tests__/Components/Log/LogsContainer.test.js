@@ -27,7 +27,7 @@ describe('Test suite for the LogContainer component', () => {
             error: errorMessage
            }
         });
-        reactRedux.useSelector.mockImplementationOnce(() => {return { searchQuery:  '' }});
+        reactRedux.useSelector.mockImplementationOnce(() => '');
         
         jest.spyOn(LogsSlice, 'fetchLogsForCurrentUser')
             .mockImplementation(() => MockLogData);
@@ -46,6 +46,5 @@ describe('Test suite for the LogContainer component', () => {
         /** Assert */
         expect(screen.getByPlaceholderText('Subject Name'));
         expect(screen.getByText(expectedText));
-
     });
 });

@@ -63,7 +63,7 @@ const Register = () => {
                         type='password'
                         name='password' 
                         placeholder='Password'
-                        vaule={formData.password || ''}
+                        value={formData.password || ''}
                         onChange={handleChange}
                     />
                     <InfoIcon
@@ -74,7 +74,7 @@ const Register = () => {
                         type='password'
                         name='passwordConfirmation' 
                         placeholder='Password Confirmation'
-                        vaule={formData.passwordConfirmation || ''}
+                        value={formData.passwordConfirmation || ''}
                         onChange={handleChange}
                     />
                     <InfoIcon
@@ -85,7 +85,7 @@ const Register = () => {
                         type='text'
                         name='userName' 
                         placeholder='Username'
-                        vaule={formData.userName || ''}
+                        value={formData.userName || ''}
                         onChange={handleChange}
                     />
                     <InfoIcon

@@ -8,7 +8,6 @@
 
 .logCard:hover {
     box-shadow: 0 3px 3px 3px #96f0bd;
-
 }
 
 #logContainer {
@@ -16,6 +15,7 @@
     flex-flow: column wrap;
     min-width: 40vw;
     align-items: center;
+    padding-bottom: 10px;
 }
 
 #logContainer > .button {
@@ -54,4 +54,23 @@
 #newLogForm > input:disabled {
     background-color: #fff;
     color: #000;
+}
+
+#updateLogForm {
+    display: grid;
+    grid-template-columns: 80% auto;
+    grid-template-rows: auto/4;
+    gap: 10px;
+    justify-content: center;
+    max-width: 70vw;
+    height: auto;
+    margin: 5vw;
+}
+
+#updateLogForm > * {
+    padding: 10px;
+}
+
+#updateLogForm > button {
+    grid-column: 1/span 2;
 }
