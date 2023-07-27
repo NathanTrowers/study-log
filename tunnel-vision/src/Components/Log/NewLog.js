@@ -17,7 +17,8 @@ const NewLog = () => {
     const dispatch = useDispatch();
     const { user } = useSelector(selectUser);
     const { time } = useSelector(selectTime);
-    const { date, duration, startTime, endTime } = time; 
+    const { date, duration, startTime,
+        endTime } = time; 
     const [ formData, setFormData ] = useState({
         date:       `${date}`,
         duration:   duration,
@@ -70,7 +71,7 @@ const NewLog = () => {
             <form id='newLogForm' data-testid='form' onSubmit={handleSubmit}>
                     <input
                         data-test='subject-input'
-                        type='subject'
+                        type='text'
                         name='subject'
                         placeholder='Subject Name'
                         value={formData.subject || ''}
@@ -87,7 +88,7 @@ const NewLog = () => {
                         form='newLogForm'                 
                         name='details'
                         placeholder='Put details about your study session here!'
-                        vaule={formData.details || ''}
+                        value={formData.details || ''}
                         onChange={handleChange}
                     />
                      <InfoIcon
@@ -97,10 +98,10 @@ const NewLog = () => {
                         Rated Understanding: 
                         <input
                             data-test='rated-understanding-input'                 
-                            type='ratedUnderstanding'
+                            type='text'
                             name='ratedUnderstanding' 
                             placeholder='5'
-                            vaule={formData.ratedUnderstanding || ''}
+                            value={formData.ratedUnderstanding || ''}
                             onChange={handleChange}
                         /> of 10
                     </p>
@@ -112,7 +113,7 @@ const NewLog = () => {
                         type='text'
                         data-testid='duration' 
                         name='duration' 
-                        vaule={formData.duration}
+                        value={formData.duration}
                         placeholder={formData.duration}
                         disabled
                     />
@@ -121,10 +122,10 @@ const NewLog = () => {
                     />
                     <input
                         data-test='start-time-input'                 
-                        type='startTime'
+                        type='text'
                         data-testid='startTime' 
                         name='startTime' 
-                        vaule={formData.startTime}
+                        value={formData.startTime}
                         placeholder={formData.startTime}
                         disabled
                     />
@@ -133,10 +134,10 @@ const NewLog = () => {
                     />
                     <input
                         data-test='end-time-input'                 
-                        type='endTime'
+                        type='text'
                         data-testid='endTime' 
                         name='endTime' 
-                        vaule={formData.endTime}
+                        value={formData.endTime}
                         placeholder={formData.endTime}
                         disabled
                     />

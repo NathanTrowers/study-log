@@ -6,7 +6,9 @@ As a logged-in user, I want to edit one of my recorded study sessions (session n
 
 ## ACCEPTANCE CRITERIA
 
-+ a payload from an authenticated user is validated, and the log updated.
++ clicking the update button for a log on the logs page routes to a form where the updatable fields are shown.  There is also a back button on this page.
++ invalid values trigger an error message, and an error from the API will trigger a different error message.
++ a valid payload returns a success message, then redirects to the logs page
 
 REQUIREMENTS REMAINING
 

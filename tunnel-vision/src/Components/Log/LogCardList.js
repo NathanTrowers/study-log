@@ -6,13 +6,14 @@ const LogCardList = ({ logs }) => {
             {
                 logs.map( (log, index) => {
                     const { 
-                        subject, details, ratedUnderstanding,
+                        _id, subject, details, ratedUnderstanding,
                         date, startTime, endTime, duration
                     } = log;
 
                     return (
                         <LogCard
                             key={index}
+                            _id={_id}
                             subject={subject}
                             ratedUnderstanding={ratedUnderstanding}
                             date={date}

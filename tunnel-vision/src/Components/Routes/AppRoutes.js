@@ -7,6 +7,7 @@ import Home from '../Home';
 import LogsContainer from '../Log/LogsContainer';
 import NewLog from '../Log/NewLog';
 import StudySession from '../Log/StudySession';
+import UpdateLog from '../Log/UpdateLog';
 import NotFound from '../NotFound';
 import Welcome from '../Welcome';
 
@@ -22,6 +23,7 @@ const AppRoutes = () => {
                     <Route path='/logs' element={<LogsContainer />} />
                     <Route path='/study-session' element={<StudySession />} />
                     <Route path='/new-log' element={<NewLog />} /> 
+                    <Route path='/log/:id' element={<UpdateLog />} /> 
                 </Route>
                 <Route path='*' element={<NotFound />}/>
             </Routes>

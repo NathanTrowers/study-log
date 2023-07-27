@@ -10,6 +10,20 @@ export const get = async endpoint => {
     } 
 }
 
+export const patch = async (endpoint, data = {}) => {
+    try { 
+        const response = await axios.patch(
+            `http://localhost:3000${endpoint}`, 
+            data,
+            {withCredentials: true}
+        );
+
+        return response;
+    } catch (error) {
+        throw error;
+    } 
+}
+
 export const post = async (endpoint, data = {}) => {
     try { 
         const response = await axios.post(

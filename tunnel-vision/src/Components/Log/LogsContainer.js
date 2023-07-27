@@ -1,16 +1,17 @@
-import { useDispatch , useSelector} from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import LogCardList from './LogCardList';
 import SearchBar from '../SearchBar';
-import { fetchLogsForCurrentUser, selectLogs} from '../Slice/LogsSlice';
+import { fetchLogsForCurrentUser, selectLogs } from '../Slice/LogsSlice';
 import { selectSearchQuery } from '../Slice/SearchQuerySlice';
 import { selectUser } from '../Slice/UserSlice';
+import './_styles/Logs.css'
 
 const LogsContainer = () => {
     const dispatch = useDispatch();
     let { user } = useSelector(selectUser);
     let logs = useSelector(selectLogs);
-    let { searchQuery } = useSelector(selectSearchQuery);
+    let searchQuery = useSelector(selectSearchQuery);
 
     if (logs.logs.length === 0) {
         dispatch(fetchLogsForCurrentUser(user));

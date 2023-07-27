@@ -10,12 +10,14 @@ export const fetchLogsForCurrentUser = createAsyncThunk('logs/fetchLogsForCurren
 export const logsSlice = createSlice({
     name: 'logs',
     initialState: {
-        loading: false,
-        logs: [],
-        error: ''
+        loading:        false,
+        logs:           [],
+        error:          '',
+        singleLogId:    ''
     },
     reducers: {
         setLogs: (state, action) => {state.logs = action.payload},
+        setSingleLogId: (state, action) => {state.singleLogId = action.payload},
     },
     extraReducers: (builder) => {
         builder.addCase(fetchLogsForCurrentUser.pending, state => {
@@ -34,8 +36,14 @@ export const logsSlice = createSlice({
     }
 });
 
-export const { setLogs } = logsSlice.actions;
+export const { setLogs, setSingleLogId } = logsSlice.actions;
 
 export const selectLogs = state => state.logs;
+
+export const selectSingleLog = state => {
+    const singleLog = state.logs.logs.filter(log => log._id === state.logs.singleLogId);
+    
+    return singleLog[0];
+}
 
 export default logsSlice.reducer;
