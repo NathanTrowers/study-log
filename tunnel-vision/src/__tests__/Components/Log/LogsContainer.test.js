@@ -19,7 +19,7 @@ describe('Test suite for the LogContainer component', () => {
     ])('renders without crashing when the expected text is $expectedText', async ({ loadingState, errorMessage, expectedText }) => {
         /** Arrange */
         reactRedux.useDispatch.mockImplementation(() => jest.fn());
-        reactRedux.useSelector.mockImplementationOnce(() => {return {user: {id: 'MOCK UUID'}}});
+        reactRedux.useSelector.mockImplementationOnce(() => {return {user: {id: 'fe30cd44-6a65-409e-8493-2d936e7b4783'}}});
         reactRedux.useSelector.mockImplementationOnce(() => {
            return { 
             loading: loadingState,
@@ -28,7 +28,8 @@ describe('Test suite for the LogContainer component', () => {
            }
         });
         reactRedux.useSelector.mockImplementationOnce(() => '');
-        
+        reactRedux.useSelector.mockImplementation(() => {return {user: {id: 'fe30cd44-6a65-409e-8493-2d936e7b4783'}}});
+
         jest.spyOn(LogsSlice, 'fetchLogsForCurrentUser')
             .mockImplementation(() => MockLogData);
         jest.spyOn(LogsSlice, 'selectLogs')

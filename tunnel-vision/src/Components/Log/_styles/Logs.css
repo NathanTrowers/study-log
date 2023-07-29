@@ -1,3 +1,19 @@
+@keyframes deleteButtonHighlight {
+    0% {background-image: linear-gradient(#2E8B57, #2E8B57);}
+    25% {background-image: linear-gradient(#2E8B57, #2E8B57 #FF8C00);}
+    50% {background-image: linear-gradient(#2E8B57, #FF8C00);}
+    75% {background-image: linear-gradient(#2E8B57, #FF8C00, #FF8C00);}
+    100% {background-image: linear-gradient(#FF8C00, #FF8C00);}
+  }
+  
+  @keyframes undoDeleteButtonHighlight {
+    0% {background-image: linear-gradient(#FF8C00, #FF8C00);}
+    25% {background-image: linear-gradient(#2E8B57, #FF8C00, #FF8C00);}
+    50% {background-image: linear-gradient(#2E8B57, #FF8C00);}
+    75% {background-image: linear-gradient(#2E8B57, #2E8B57 #FF8C00);}
+    100% {background-image: linear-gradient(#2E8B57, #2E8B57);}
+  }
+
 .logCard {
     background-color: #71dda0;
     color: #000;
@@ -8,6 +24,44 @@
 
 .logCard:hover {
     box-shadow: 0 3px 3px 3px #96f0bd;
+}
+
+.deleteButton {
+    background-image: linear-gradient(#2E8B57, #2E8B57);
+    color: #FFF;
+    text-decoration: none;
+    font-size: 20px;
+    border: 2px solid #FF8C00;
+    min-height: 40px;
+    min-width: 80px;
+    border-radius: 4px;
+    animation-name: undoDeleteButtonHighlight;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+.deleteButton:hover {
+    background-image: linear-gradient(#FF8C00, #FF8C00);
+    color: #000;
+    animation-name: deleteButtonHighlight;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+.confirmDeleteButton {
+    border: 2px solid #FFE2B6;
+    box-shadow: 0px 3px 10px 2px #FFD9B6, 0px -3px 10px #FFD9B6;
+    outline:none;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-flow: row wrap;
+    min-width: 40vw;
+    justify-content: center;
+    align-items: stretch;
 }
 
 #logContainer {
