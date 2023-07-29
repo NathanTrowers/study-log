@@ -6,6 +6,7 @@ import MockLogData from '../../../__testMocks__/Log/MockLogData';
 
 jest.mock('react-redux', () => ({
     useDispatch: jest.fn(() => jest.fn()),
+    useSelector: jest.fn(() => {})
 }));
 import * as reactRedux from 'react-redux';
 
@@ -18,6 +19,8 @@ describe('Test fro the LogCard Component', () => {
         } = MockLogData[0];
         const _id = 'fe30bb44-6a64-409e-9258-2d995e7b4783';
 
+        reactRedux.useSelector.mockImplementation(() => {return {user: {id: 'fe30cd44-6a65-409e-8493-2d936e7b4783'}}});
+        
         jest.spyOn(LogsSlice, 'setSingleLogId')
         .mockImplementation(() => _id);
 

@@ -13,6 +13,34 @@ export const formMessages = {
 }
 
 /**
+ * @param string request = 'delete'||'confirmDelete'||'' (failed delete)
+ * @returns Object
+ */
+export const setDeleteMessage = (request) => {
+    let messageDelete = {
+        class: 'deleteButton',
+        text: 'Delete Log'
+    }
+    let messageConfirmDelete = {
+        class: 'confirmDeleteButton',
+        text: 'Click to Confirm Delete'
+    }
+    let messageFailedDelete = {
+        class: 'deleteButton',
+        text: 'DELETE FAILED'
+    }
+
+    if (request === 'delete') {
+        return messageDelete;
+    }
+    if (request === 'confirmDelete') {
+        return messageConfirmDelete;
+    }
+    
+    return messageFailedDelete;
+}
+
+/**
  * @param string reason = 'error'||'invalid'||''
  * @returns Object
  */
