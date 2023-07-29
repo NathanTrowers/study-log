@@ -2,8 +2,28 @@
 
 import { success, clientError, serverError } from '../Constants/HttpCodeConstants.js';
 import operationOutcome from '../Constants/OperationOutcomeConstants.js';
-import { findLogs } from '../DatabaseConnector/MongoConnect.js';
+import { deleteSingleLog, findLogs } from '../DatabaseConnector/MongoConnect.js';
 import { validateNewLogInput, validateEditLogInput }from '../Validators/LogInputValidator.js'
+
+export const deleteLog = async (req, res, next) => {
+    try {
+        const { userId, id} = req.body;
+
+        const deletionStatus = await deleteSingleLog(id, userId);
+        deletionStatus === operationOutcome.FAILURE
+            ? res.status(clientError.NOT_ACCEPTABLE)
+                .json({ status: operationOutcome.FAILURE})
+            : res.status(success.OK)
+                .json({ logDeleted: true });
+    } catch (error) {
+        res.status(serverError.INTERNAL_SERVER_ERROR)
+            .json({
+                message: 'An error occurred'
+            });
+    } finally {
+        next();
+    }
+}
 
 export const editLog = async (req, res, next) => {
     try {
