@@ -23,7 +23,7 @@ export const createUser = async (email, hashedPassword, userName) => {
             name: userName,
             dateCreated: new Date().toISOString()
           });
-      console.log("Operation successfull");
+      console.log("createUser successful");
 
       return {
           status:   operationOutcome.SUCCESS,
@@ -36,6 +36,39 @@ export const createUser = async (email, hashedPassword, userName) => {
         status:   operationOutcome.FAILURE,
         response: MongoNetworkError
       };
+    } finally {
+      client.close();
+      console.log("Database connection closed");
+    }
+}
+
+export const deleteSingleLog = async (id, userId) => {
+  const client = new MongoClient(DATABASE_URL, { useUnifiedTopology: true });
+
+  try {
+      await client.connect();
+      console.log("Connected to database");
+
+      const response = await client.db(DATABASE_NAME)
+          .collection('Log')
+          .deleteOne({
+            _id:    id,
+            userId: userId
+          });
+
+      if (response.deletedCount === 0) {
+        console.log("deleteSingleLog failed");
+
+        return operationOutcome.FAILURE;
+      }
+
+      console.log("deleteSingleLog successful");
+
+      return operationOutcome.SUCCESS;
+    } catch (MongoNetworkError) {
+      console.error('Something went wrong while deleting the log.', MongoNetworkError)
+
+      return operationOutcome.FAILURE;
     } finally {
       client.close();
       console.log("Database connection closed");
@@ -62,7 +95,7 @@ export const editExistingLog = async (logId, userId, subject,
                 ratedUnderstanding: ratedUnderstanding,
               }
           });
-        console.log("Operation successfull");
+        console.log("editExistingLog successful");
   
         return operationOutcome.SUCCESS;
       } catch (MongoNetworkError) {
@@ -85,7 +118,7 @@ export const findUser = async email => {
         const response = await client.db(DATABASE_NAME)
             .collection('Login')
             .findOne({ email: email });
-        console.log("Operation successfull");
+        console.log("findUser successful");
 
         return {
             status:   operationOutcome.SUCCESS,
@@ -115,7 +148,7 @@ export const findLogs = async id => {
         .collection('Log')
         .find({ userId: id })
         .toArray();
-      console.log("Operation successfull");
+      console.log("findLogs successful");
 
       return {
           status:   operationOutcome.SUCCESS,
@@ -156,7 +189,7 @@ export const saveNewLog = async (userId, subject, details,
           startTime: startTime,
           endTime: endTime
          });
-      console.log("Operation successfull");
+      console.log("Operation successful");
 
       return operationOutcome.SUCCESS;
     } catch (MongoNetworkError) {
