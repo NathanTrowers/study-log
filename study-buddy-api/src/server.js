@@ -30,6 +30,7 @@ sessionStore.on('error', error => {
     console.log('An error occurred relating to the session storage: \n', error);
 });
 
+app.disable('x-powered-by');
 app.use(cors({
     origin: 'http://localhost:3001',
     credentials: true

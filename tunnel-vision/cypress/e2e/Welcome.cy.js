@@ -4,7 +4,7 @@ describe('Welcome Page', () => {
   });
 
   it('checks that the h1 contains the right text', () => {
-    cy.getByData('welcome-heading').contains('Welcome to the Study Web App!');
+    cy.getByData('welcome-heading').contains('Welcome to the Study Log!');
   })
 
   it('clicks on "Login" button to visit Login page', () => {
