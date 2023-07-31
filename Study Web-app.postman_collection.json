@@ -1,0 +1,830 @@
+{
+	"info": {
+		"_postman_id": "88a2211a-dcfa-47af-b178-1b1d45b76cc1",
+		"name": "Study Web-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8385097"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Health Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spirit-library-base-url}} /health",
+							"host": [
+								"{{spirit-library-base-url}} "
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Sign-up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let iterator = pm.variables.get('signUpIterator');",
+									"",
+									"    if (iterator < 10) {",
+									"        pm.test(\"Status code is 400 when wrong credentials entered\", () => {",
+									"            pm.response.to.have.status(400);",
+									"        });",
+									"    }",
+									"",
+									"    if (iterator === 10) { ",
+									"        //NOTE: A manual deletion of the test user is required after each run of the below test.",
+									"        pm.test(\"Status code is 202 when the right credentials are entered\", () => {",
+									"            pm.response.to.have.status(202);",
+									"        });",
+									"    }",
+									"",
+									"    if (iterator === 11) {",
+									"        postman.setNextRequest('Get Login');",
+									"    }",
+									"",
+									"    iterator++;",
+									"    pm.variables.set('signUpIterator', iterator);                    ",
+									"  ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let iterator = pm.variables.get('signUpIterator');",
+									"if (!iterator) {",
+									"    pm.variables.set('signUpIterator', 0);",
+									"    iterator = 0;",
+									"}",
+									"",
+									"// wrong email format v1",
+									"if (iterator === 0) {",
+									"    pm.variables.set('login-email', 's.addict3!@test.com');",
+									"    pm.variables.set('login-password', 'B0Okw@rm!');",
+									"    pm.variables.set('user-name', 'Studying Addict3');",
+									"}",
+									"// wrong email format v2",
+									"if (iterator === 1) {",
+									"    pm.variables.set('login-email', 's.addict3@test%%.com');",
+									"}",
+									"// wrong email format v3",
+									"if (iterator === 2) {",
+									"    pm.variables.set('login-email', 's.addict3!@test.c');",
+									"}",
+									"// wrong password format v1",
+									"if (iterator === 3) {",
+									"    pm.variables.set('login-email', 's.addict3@test.com');",
+									"    pm.variables.set('login-password', 'bookwor');",
+									"}",
+									"// wrong password format v2",
+									"if (iterator === 4) {",
+									"    pm.variables.set('login-password', 'b%okworm');",
+									"}",
+									"// wrong password format v3",
+									"if (iterator === 5) {",
+									"    pm.variables.set('login-password', 'bookwormmmmmmmmm');",
+									"}",
+									"// wrong user name format v1",
+									"if (iterator === 6) {",
+									"    pm.variables.set('login-password', 'B0Okw@rm!');",
+									"    pm.variables.set('user-name', 'Studying Add!ct3');",
+									"}",
+									"// wrong user name format v2",
+									"if (iterator === 7) {",
+									"    pm.variables.set('user-name', '{name: Jimmy}');",
+									"}",
+									"// wrong user name format v3",
+									"if (iterator === 8) {",
+									"    pm.variables.set('user-name', 'Studying_Add!ct');",
+									"}",
+									"",
+									"// request is made with known user's email",
+									"if (iterator === 9) {",
+									"    pm.variables.set('login-email', 's.addict2@test.com');",
+									"}",
+									"",
+									"// credentials are correct",
+									"if (iterator === 10) {",
+									"    pm.variables.set('login-email', 's.addict3@test.com');",
+									"    pm.variables.set('login-password', 'B0Okw@rm!');",
+									"    pm.variables.set('user-name', 'Studying Addict3');",
+									"}",
+									"",
+									"postman.setNextRequest('Sign-up');",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{login-email}}\",\n    \"password\": \"{{login-password}}\",\n    \"userName\": \"{{user-name}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{spirit-library-base-url}} /auth/sign-up",
+							"host": [
+								"{{spirit-library-base-url}} "
+							],
+							"path": [
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let requestCount = pm.variables.get('requestCount');",
+									"if (!requestCount) {",
+									"    pm.variables.set('requestCount', 2);",
+									"    requestCount = 1;",
+									"}",
+									"",
+									"if (requestCount === 1) {",
+									"    pm.test(\"Status code is 200 when user is not signed in\", () => {",
+									"        pm.expect(pm.response.code).to.eql(200);",
+									"    });",
+									"}",
+									"",
+									"if (requestCount == 2) {",
+									"    pm.test(\"Status code is 200 when user is signed in\", () => {",
+									"        pm.expect(pm.response.code).to.eql(200);",
+									"        pm.expect(pm.response.json().isLoggedIn).to.eql(true);",
+									"    });",
+									"}",
+									"",
+									"requestCount === 1",
+									"    ? postman.setNextRequest('Post Login')",
+									"    : postman.setNextRequest('Create New Log');",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spirit-library-base-url}} /auth/login",
+							"host": [
+								"{{spirit-library-base-url}} "
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let iterator = pm.variables.get('iterator');",
+									"if (!iterator) {",
+									"    pm.variables.set('iterator', 0);",
+									"    iterator = 0;",
+									"}",
+									"",
+									"// wrong email format v1",
+									"if (iterator === 0) {",
+									"    pm.variables.set('login-email', 's.addict2!@test.com');",
+									"    pm.variables.set('login-password', 'bookworm');",
+									"}",
+									"// wrong email format v2",
+									"if (iterator === 1) {",
+									"    pm.variables.set('login-email', 's.addict2@test%%.com');",
+									"}",
+									"// wrong email format v3",
+									"if (iterator === 2) {",
+									"    pm.variables.set('login-email', 's.addict2!@test.c');",
+									"}",
+									"// user not found ",
+									"if (iterator === 3) {",
+									"    pm.variables.set('login-email', 'unknown@test.com');",
+									"    pm.variables.set('login-password', 'bookworm');",
+									"}",
+									"// wrong password",
+									"if (iterator === 4) {",
+									"    pm.variables.set('login-email', 's.addict2@test.com');",
+									"    pm.variables.set('login-password', 'wrrang-bang');",
+									"}",
+									"// credentials are correct",
+									"if (iterator === 5) {",
+									"    pm.variables.set('login-email', 's.addict2@test.com');",
+									"    pm.variables.set('login-password', 'bookworm');",
+									"}",
+									"",
+									"iterator < 6",
+									"    ? postman.setNextRequest('Post Login')",
+									"    : postman.setNextRequest('Get Login');",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let iterator = pm.variables.get('iterator');",
+									"",
+									"if (iterator < 5) {",
+									"    pm.test(\"Status code is 400 when wrong credentials entered\", () => {",
+									"        pm.response.to.have.status(400);",
+									"    });",
+									"}",
+									"",
+									"if (iterator === 5) {",
+									"    pm.test(\"Status code is 202 when the right credentials are entered\", () => {",
+									"        pm.response.to.have.status(202);",
+									"    });",
+									"}",
+									"",
+									"if (iterator === 7) {",
+									"    postman.setNextRequest('Get Login');",
+									"}",
+									"",
+									"iterator++;",
+									"pm.variables.set('iterator', iterator);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{login-email}}\",\n    \"password\": \"{{login-password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{spirit-library-base-url}} /auth/login",
+							"host": [
+								"{{spirit-library-base-url}} "
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"    pm.test(\"Status code is 202 for a successful logout attempt\", () => {",
+									"        pm.response.to.have.status(202);",
+									"    });",
+									"",
+									"postman.setNextRequest(null);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{spirit-library-base-url}} /auth/logout",
+							"host": [
+								"{{spirit-library-base-url}} "
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Log",
+			"item": [
+				{
+					"name": "View Logs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let iterator = pm.variables.get('logIterator');",
+									"",
+									"if (iterator === 0) {",
+									"    pm.test(\"Status code is 200 fo response received.\", () => {",
+									"        pm.response.to.have.status(200);",
+									"",
+									"        const response = pm.response.json().logs.response;",
+									"        const lastIndex = response.length -1;",
+									"        pm.variables.set('delete-log-log-id', response[lastIndex]._id);",
+									"    });",
+									"}",
+									"",
+									"if (iterator === 1) {",
+									"    pm.test(\"Status code is 404 for response received.\", () => {",
+									"        pm.response.to.have.status(404);",
+									"    });",
+									"",
+									"    postman.setNextRequest('Delete Log');",
+									"}",
+									"",
+									"iterator++;",
+									"pm.variables.set('logIterator', iterator);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let iterator = pm.variables.get('logIterator');",
+									"if (!iterator) {",
+									"    pm.variables.set('logIterator', 0);",
+									"    iterator = 0;",
+									"}",
+									"",
+									"// ID exists",
+									"if (iterator === 0) {",
+									"    pm.variables.set('user-id', '63f3c739-2deb-6400-c51b-2b183a9cf104');",
+									"}",
+									"//ID does not exist",
+									"if (iterator === 1) {",
+									"    pm.variables.set('user-id', '63f3c739-2deb-6400-c51b-2b183a9cf108');",
+									"}",
+									"",
+									"if (iterator < 1) {",
+									"     postman.setNextRequest('View Logs');",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spirit-library-base-url}} /logs?id={{user-id}}",
+							"host": [
+								"{{spirit-library-base-url}} "
+							],
+							"path": [
+								"logs"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{user-id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Log",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let iterator = pm.variables.get('newLogIterator');",
+									"if (!iterator) {",
+									"    pm.variables.set('newLogIterator', 0);",
+									"    iterator = 0;",
+									"}",
+									"",
+									"// invalid userId, subject, and details",
+									"if (iterator === 0) {",
+									"    pm.variables.set('new-log-user-id', '63f3c739-2deb-6400-c51b-2b183a9cf10z');",
+									"    pm.variables.set('new-log-subject', 'An Almost Perfect Title {injectionAttack:malice}');",
+									"    pm.variables.set('new-log-details', 'An Almost perfect set of details {injectionAttack:malice}');",
+									"    pm.variables.set('new-log-rated-understanding', '8 of 10');",
+									"    pm.variables.set('new-log-duration', '00:20:00:00');",
+									"    pm.variables.set('new-log-date', '2023-04-19 13:55:49:549');",
+									"    pm.variables.set('new-log-start-time', '13:30:00:054');",
+									"    pm.variables.set('new-log-end-time', '13:50:01:001');",
+									"}",
+									"",
+									"// invalid ratedUnderstanding, duration, and date",
+									"if (iterator === 1) {",
+									"    pm.variables.set('new-log-user-id', '63f3c739-2deb-6400-c51b-2b183a9cf104');",
+									"    pm.variables.set('new-log-subject', 'MEVN Stack Web Development');",
+									"    pm.variables.set('new-log-details', 'Project scaffolding complete. Also did setup for the Vue.js portion\\'s unit tests!');",
+									"    pm.variables.set('new-log-rated-understanding', '-1 of 10');",
+									"    pm.variables.set('new-log-duration', '99:99:99:99');",
+									"    pm.variables.set('new-log-date', '2023-04-19T13:55:49:549');",
+									"}",
+									"",
+									"// invlaid startTime and endtime",
+									"if (iterator === 2) {",
+									"    pm.variables.set('new-log-rated-understanding', '8 of 10');",
+									"    pm.variables.set('new-log-duration', '00:20:00:00');",
+									"    pm.variables.set('new-log-date', '2023-04-19 13:55:49:549');",
+									"    pm.variables.set('new-log-start-time', '00:23-00:000');",
+									"    pm.variables.set('new-log-end-time', '00:03:00:9999');",
+									"}",
+									"",
+									"// valid payload",
+									"if (iterator === 3) {",
+									"    pm.variables.set('new-log-start-time', '13:30:00:054');",
+									"    pm.variables.set('new-log-end-time', '13:50:01:001');",
+									"}",
+									"",
+									"if (iterator < 3) {",
+									"    postman.setNextRequest('Create New Log');",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let iterator = pm.variables.get('newLogIterator');",
+									"",
+									"if (iterator === 0){",
+									"    pm.test(\"Status code is 400 when the log contains an invalid userId, subject, and details \", () => {",
+									"        pm.response.to.have.status(400);",
+									"        pm.expect(pm.response.json().validationErrors).to.eql([400001001, 400001002, 400001003]);",
+									"    });",
+									"}",
+									"",
+									"if (iterator === 1) {",
+									"    pm.test(\"Status code is 400 when the log contains an invalid ratedUnderstanding, duration, and date \", () => {",
+									"        pm.response.to.have.status(400);",
+									"        pm.expect(pm.response.json().validationErrors).to.eql([400001004, 400001005, 400001006]);",
+									"    });",
+									"}",
+									"",
+									"if (iterator === 2) {",
+									"    pm.test(\"Status code is 400 when the log contains an invalid startTime, and endTime \", () => {",
+									"        pm.response.to.have.status(400);",
+									"        pm.expect(pm.response.json().validationErrors).to.eql([400001007, 400001008]);",
+									"    });",
+									"}",
+									"",
+									"if (iterator === 3) {",
+									"    pm.test(\"Status code is 201 when a valid new log is sent\", () => {",
+									"        pm.response.to.have.status(201);",
+									"    });",
+									"",
+									"    postman.setNextRequest('Edit Log');",
+									"}",
+									"",
+									"iterator++;",
+									"pm.variables.set('newLogIterator', iterator);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"userId\": \"{{new-log-user-id}}\",\n    \"subject\": \"{{new-log-subject}}\",\n    \"details\": \"{{new-log-details}}\",\n    \"ratedUnderstanding\": \"{{new-log-rated-understanding}}\",\n    \"duration\": \"{{new-log-duration}}\",\n    \"date\": \"{{new-log-date}}\",\n    \"startTime\": \"{{new-log-start-time}}\",\n    \"endTime\": \"{{new-log-end-time}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{spirit-library-base-url}} /log",
+							"host": [
+								"{{spirit-library-base-url}} "
+							],
+							"path": [
+								"log"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Log",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let iterator = pm.variables.get('existingLogIterator');",
+									"if (!iterator) {",
+									"    pm.variables.set('existingLogIterator', 0);",
+									"    iterator = 0;",
+									"}",
+									"",
+									"//invalid payload",
+									"if (iterator === 0) {",
+									"    pm.variables.set('existing-log-log-id', 'fe30bb44-6a64-4309e-9258-2d995e7b4783');",
+									"    pm.variables.set('existing-log-user-id', '63f3c739-2deb-6400-c51b-2b183a9cf10z');",
+									"    pm.variables.set('existing-log-subject', 'An Almost Perfect Subject Title {malice: injectionAttack}');",
+									"    pm.variables.set('existing-log-details', 'An almost perfect set of details {malice: injectionAttack}');",
+									"    pm.variables.set('existing-log-rated-understanding', 'Z of 10');",
+									"}",
+									"",
+									"//valid payload",
+									"if (iterator === 1) {",
+									"    pm.variables.set('existing-log-log-id', 'fe30bb44-6a64-409e-9258-2d995e7b4783');",
+									"    pm.variables.set('existing-log-user-id', '63f3c739-2deb-6400-c51b-2b183a9cf104');",
+									"    pm.variables.set('existing-log-subject', 'MEANer Stack Web Development');",
+									"    pm.variables.set('existing-log-details', 'Project scaffolding complete. Also did setup for the ANGULAR portion\\'s unit tests!');",
+									"    pm.variables.set('existing-log-rated-understanding', '10 of 10');",
+									"}",
+									"",
+									"//reset database entry",
+									"if (iterator === 2) {",
+									"    pm.variables.set('existing-log-log-id', 'fe30bb44-6a64-409e-9258-2d995e7b4783');",
+									"    pm.variables.set('existing-log-user-id', '63f3c739-2deb-6400-c51b-2b183a9cf104');",
+									"    pm.variables.set('existing-log-subject', 'MEAN Stack Web Development');",
+									"    pm.variables.set('existing-log-details', 'Project scaffolding complete. Also did setup for the Angular.js portion\\'s unit tests!');",
+									"    pm.variables.set('existing-log-rated-understanding', '8 of 10');",
+									"}",
+									"",
+									"if (iterator < 2) {",
+									"    postman.setNextRequest('Edit Log');",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let iterator = pm.variables.get('existingLogIterator');",
+									"",
+									"if (iterator === 0) {",
+									"    pm.test(\"Status code is 400 when the log contains an invalid logId, userId, subject, description, and ratedUnderstanding \", () => {",
+									"        pm.response.to.have.status(400);",
+									"        pm.expect(pm.response.json().validationErrors).to.eql([",
+									"            400001001, 400001009, 400001002, 400001003,",
+									"            400001004]);",
+									"    });",
+									"}",
+									"",
+									"if (iterator === 1) {",
+									"    pm.test(\"Status code is 202 when a valid new log is sent\", () => {",
+									"        pm.response.to.have.status(202);",
+									"    });",
+									"}",
+									"",
+									"if (iterator === 2) {",
+									"    postman.setNextRequest('View Logs');",
+									"}",
+									"",
+									"iterator++;",
+									"pm.variables.set('existingLogIterator', iterator);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"logId\": \"{{existing-log-log-id}}\",\n    \"userId\": \"{{existing-log-user-id}}\",\n    \"subject\": \"{{existing-log-subject}}\",\n    \"details\": \"{{existing-log-details}}\",\n    \"ratedUnderstanding\": \"{{existing-log-rated-understanding}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{spirit-library-base-url}} /log/fe30bb44-6a64-409e-9258-2d995e7b4783",
+							"host": [
+								"{{spirit-library-base-url}} "
+							],
+							"path": [
+								"log",
+								"fe30bb44-6a64-409e-9258-2d995e7b4783"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Log",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let iterator = pm.variables.get('deleteLogIterator');",
+									"    ",
+									"if (iterator === 0) {",
+									"        pm.test(\"Status code is 200 on successful log deletion\", () => {",
+									"        pm.response.to.have.status(200);",
+									"        pm.expect(pm.response.json().logDeleted).to.eql(true);",
+									"    });",
+									"}",
+									"",
+									"if (iterator === 1) {",
+									"    pm.test(\"Status code is 406 on failure to find log for user\", () => {",
+									"        pm.response.to.have.status(406);",
+									"    });",
+									"",
+									"    postman.setNextRequest('Logout');",
+									"}",
+									"",
+									"iterator++",
+									"pm.variables.set('deleteLogIterator', iterator);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let iterator = pm.variables.get('deleteLogIterator');",
+									"if (!iterator) {",
+									"    pm.variables.set('deleteLogIterator', 0);",
+									"    iterator = 0;",
+									"}",
+									"",
+									"pm.variables.set('delete-log-user-id', '63f3c739-2deb-6400-c51b-2b183a9cf104');",
+									"//use the below line when doing the test manually and change the environment variable in the URL to the log ID",
+									"// pm.variables.set('delete-log-log-id', 'e10d12d0-b023-42dd-8031-6a16a299c470'); ",
+									"",
+									"if (iterator < 1) {",
+									"    postman.setNextRequest('Delete Log');",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"{{delete-log-user-id}}\",\n    \"id\": \"{{delete-log-log-id}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{spirit-library-base-url}} /log/{{delete-log-log-id}}",
+							"host": [
+								"{{spirit-library-base-url}} "
+							],
+							"path": [
+								"log",
+								"{{delete-log-log-id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "spirit-library-base-url",
+			"value": "localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "login-email",
+			"value": "s.addict2@test.com",
+			"type": "string"
+		},
+		{
+			"key": "login-password",
+			"value": "bookworm",
+			"type": "string"
+		},
+		{
+			"key": "user-name",
+			"value": "Studying Addict3",
+			"type": "string"
+		},
+		{
+			"key": "user-id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "delete-log-log-id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

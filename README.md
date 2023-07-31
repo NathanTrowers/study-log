@@ -2,14 +2,15 @@
 
 On this page:
 
-1. [General Instructions](#General-Instructions)
+1. [General Start-up Instructions](#general-start-up-instructions)
 2. [mongo-db-backup](#mongo-db-backup)
 3. [study-buddy-api](#study-buddy-api-and-tunnel-vision)
+4. [A Note on the Testing Procedures](#a-note-on-the-testing-procedures)
 
 <br />
 
 
-# General-Instructions
+# General Start-up Instructions
 After doing a `git pull` of the repo you may start the application using the `sudo docker compose up` command, but the database will be empty if this is your first time running the command.
 
 <br />
@@ -52,3 +53,8 @@ root@mongo-db$ exit
 # **study-buddy-api** and **tunnel-vision**
 
 There are no special installation instructions for **study-buddy-api** and **tunnel-vision**. They will run smoothly when `sudo docker compose up` or `sudo docker compose up spirit-library tunnel-vision` is run. The container name for **study-buddy-api** is *spirit-library*.
+
+# A Note on the Testing Procedures
+For the back-end, unit tests were run for the validators using Jest, and API tests were run using Postman.  Included in this repo is the Postman API collection used, a fully automated test suite (when run using the collection runner).
+
+For the front-end, unit tests were run for all compoenents and pure functions using Jest, and end-to-end testing for the app was conducted using Cypress.
