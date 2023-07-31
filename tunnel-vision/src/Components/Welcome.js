@@ -4,7 +4,7 @@ import './_styles/Welcome.css';
 const Welcome = () => {
     return (
         <>
-            <h1 data-test='welcome-heading'> Welcome to the Study Web App! </h1>
+            <h1 data-test='welcome-heading'> Welcome to the Study Log! </h1>
             <div id='welcomeContainer'>
                 <button className='button'>
                     <Link to='/login' className='noStyle accessibleLink'>
