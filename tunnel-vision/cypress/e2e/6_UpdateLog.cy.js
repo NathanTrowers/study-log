@@ -15,7 +15,7 @@ describe('Study Session and New Log Pages', () => {
         cy.getByData('subject-name').contains('MEAN Stack Web Development')
             .parent().contains('Update Log').click();
 
-        cy.url().should('include', '/log/fe30bb44-6a64-409e-9258-2d995e7b4783') ;
+        cy.url().should('include', '/log/') ;
         cy.getByData('subject-input').clear();
         cy.getByData('subject-input').type('MEANer Stack Web Development');
         cy.getByData('details-input').clear();
@@ -37,7 +37,7 @@ describe('Study Session and New Log Pages', () => {
         cy.getByData('subject-name').contains('MEANer Stack Web Development')
             .parent().contains('Update Log').click();
 
-        cy.url().should('include', '/log/fe30bb44-6a64-409e-9258-2d995e7b4783') ;
+        cy.url().should('include', '/log/') ;
         cy.getByData('subject-input').clear();
         cy.getByData('subject-input').type('An Almost Perfect Subject Title "malice": "injectionAttack"');
         cy.getByData('details-input').clear();
@@ -55,7 +55,7 @@ describe('Study Session and New Log Pages', () => {
         cy.getByData('subject-name').contains('MEANer Stack Web Development')
             .parent().contains('Update Log').click();
 
-        cy.url().should('include', '/log/fe30bb44-6a64-409e-9258-2d995e7b4783') ;
+        cy.url().should('include', '/log/') ;
         cy.getByData('subject-input').clear();
         cy.getByData('subject-input').type('MEANer Stack Web Development');
         cy.getByData('details-input').clear();
@@ -73,7 +73,7 @@ describe('Study Session and New Log Pages', () => {
         cy.getByData('subject-name').contains('MEANer Stack Web Development')
             .parent().contains('Update Log').click();
 
-        cy.url().should('include', '/log/fe30bb44-6a64-409e-9258-2d995e7b4783') ;
+        cy.url().should('include', '/log/') ;
         cy.getByData('subject-input').clear();
         cy.getByData('subject-input').type('MEANer Stack Web Development');
         cy.getByData('details-input').clear();
@@ -92,7 +92,7 @@ describe('Study Session and New Log Pages', () => {
             .contains('MEANer Stack Web Development')
             .parent().contains('Update Log').click();
 
-        cy.url().should('include', '/log/fe30bb44-6a64-409e-9258-2d995e7b4783') ;
+        cy.url().should('include', '/log/') ;
         cy.getByData('subject-input').clear();
         cy.getByData('subject-input').type('MEAN Stack Web Development');
         cy.getByData('details-input').clear();

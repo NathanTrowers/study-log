@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+const spiritLibraryBaseURL = 'http://localhost:3002';
+
 export const purge = async (endpoint, data = {}) => {
     try { 
         const response = await axios.delete(
-            `http://localhost:3000${endpoint}`, 
+            `${spiritLibraryBaseURL}${endpoint}`, 
             {
                 data,
                 withCredentials: true
@@ -18,7 +20,7 @@ export const purge = async (endpoint, data = {}) => {
 
 export const get = async endpoint => {
     try { 
-        const response = await axios.get(`http://localhost:3000${endpoint}`, {withCredentials: true});
+        const response = await axios.get(`${spiritLibraryBaseURL}${endpoint}`, {withCredentials: true});
 
         return response;
     } catch (error) {
@@ -29,7 +31,7 @@ export const get = async endpoint => {
 export const patch = async (endpoint, data = {}) => {
     try { 
         const response = await axios.patch(
-            `http://localhost:3000${endpoint}`, 
+            `${spiritLibraryBaseURL}${endpoint}`, 
             data,
             {withCredentials: true}
         );
@@ -43,7 +45,7 @@ export const patch = async (endpoint, data = {}) => {
 export const post = async (endpoint, data = {}) => {
     try { 
         const response = await axios.post(
-            `http://localhost:3000${endpoint}`, 
+            `${spiritLibraryBaseURL}${endpoint}`, 
             data,
             {withCredentials: true}
         );
