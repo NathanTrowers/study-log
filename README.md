@@ -2,10 +2,12 @@
 
 On this page:
 
-1. [General Start-up Instructions](#general-start-up-instructions)
-2. [mongo-db-backup](#mongo-db-backup)
-3. [study-buddy-api](#study-buddy-api-and-tunnel-vision)
-4. [A Note on the Testing Procedures](#a-note-on-the-testing-procedures)
+- [Study-WebApp Installation Instructions](#study-webapp-installation-instructions)
+- [General Start-up Instructions](#general-start-up-instructions)
+- [**mongo-db-backup**](#mongo-db-backup)
+    - [Instructions for setting the repository databse as the container's database](#instructions-for-setting-the-repository-databse-as-the-containers-database)
+- [**study-buddy-api** and **tunnel-vision**](#study-buddy-api-and-tunnel-vision)
+- [A Note on the Testing Procedures](#a-note-on-the-testing-procedures)
 
 <br />
 
@@ -29,7 +31,7 @@ root@mongo-db$ mongorestore -u Admin -p AdM1n /backup
 Check that the collections have been updated with:
 
 ``` MongoDB
-root@mongo-db$ mongo
+root@mongo-db$ mongo -u Admin -p AdM1n
 > show dbs
 ```
 

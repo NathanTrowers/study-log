@@ -6,7 +6,7 @@ const Footer = () => {
         <div id='footer'>
             <p data-testid='footer-test-id'>
                 This website is a part of the 
-                <a href='#portfolio.not.com/software' target="_blank"> NOT Software Portfolio</a>
+                <a href='#portfolio.not.nexus/software/projects' target="_blank"> NOT Software Portfolio</a>
                 <br />
                 &copy; {currentYear}.  All Rights Reserved
             </p>
