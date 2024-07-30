@@ -6,12 +6,12 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install
-
 COPY . .
 
 USER node
 
 EXPOSE 3002
 
-CMD ["npm", "run", "dev"]
+# If you are building your code for production
+# RUN npm ci --omit=dev
+CMD ["sh", "-c", "npm install && npm run dev"]
