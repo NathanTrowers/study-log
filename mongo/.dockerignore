@@ -1,0 +1,6 @@
+# Backup folder
+mongo-db-backup
+
+#Docker files
+Dockerfile
+.dockerignore

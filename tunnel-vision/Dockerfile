@@ -12,6 +12,4 @@ USER node
 
 EXPOSE 3001
 
-# If you are building your code for production
-# RUN npm ci --omit=dev
 CMD ["sh", "-c", "npm install && npm start"]

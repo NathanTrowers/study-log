@@ -12,4 +12,4 @@ USER node
 
 EXPOSE 3002
 
-CMD ["sh", "-c", "npm install && npm run dev"]
+CMD ["sh", "-c", "npm ci --omit=dev && npm start"]
