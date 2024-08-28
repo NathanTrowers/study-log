@@ -2,32 +2,33 @@ services:
   mongo-db:
     build:
       context: ./mongo
-      dockerfile: MongoDB.Dockerfile
+      dockerfile: MongoDB.Dockerfile  
     command: --auth
     container_name: mongo-db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: Admin
-      MONGO_INITDB_ROOT_PASSWORD: AdM1n
+      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/database_username
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/database_password
     volumes:
       - ./mongo/mongo-db-backup:/backup
       - ./mongo/database:/data/db
     ports:
       - 27017:27017
+    secrets:
+      - database_username
+      - database_password
 
   study-buddy-api:
     container_name: spirit-library
-    build: ./study-buddy-api
-    environment:
-      DATABASE_URL: mongodb://Admin:AdM1n@mongo-db:27017/
-      DATABASE_NAME: StudyLog
-      ADDRESS: localhost
-      PORT: 3002
+    build: 
+      context: ./study-buddy-api
     deploy:
       restart_policy:
         condition: on-failure
         delay: 3s
     depends_on:
       - mongo-db
+    env_file:
+      - .env
     links:
       - mongo-db
     ports:
@@ -51,3 +52,9 @@ services:
       - 3001:3000
     volumes:
       - ./tunnel-vision:/usr/src/app
+
+secrets:
+  database_password:
+    file: ./database_password.txt
+  database_username:
+    file: ./database_username.txt

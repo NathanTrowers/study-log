@@ -10,6 +10,6 @@ COPY . .
 
 USER node
 
-EXPOSE 3002
+EXPOSE 3001
 
-CMD ["sh", "-c", "npm install && npm run dev"]
+CMD ["sh", "-c", "npm ci --omit=dev && npm run build && npm start"]
