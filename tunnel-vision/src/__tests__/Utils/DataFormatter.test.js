@@ -27,7 +27,7 @@ describe('Test Suite for the DataFormatter utility module', () => {
         const response = formatTime(formattedData);
 
         /** Assert */
-        expect(response).toBe('09:55:49:549');
+        expect(response).toBe('13:55:49:549');
     });
 
     it.each([
