@@ -20,13 +20,14 @@ describe('Test Suite for the DataFormatter utility module', () => {
 
     it('tests the "formatTime" function', () => {
         /** Arrange */
-        const data = new Date(1681912549549);
+        const rawData = new Date(1681912549549);
+        const formattedData = new Date(rawData.getTime() + rawData.getTimezoneOffset()*60000);
 
         /** Act */
-        const response = formatTime(data);
+        const response = formatTime(formattedData);
 
         /** Assert */
-        expect(response).toBe('09:55:49:549');
+        expect(response).toBe('13:55:49:549');
     });
 
     it.each([
